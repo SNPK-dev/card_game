@@ -1,0 +1,9 @@
+# Install a hardware-appropriate PyTorch build first; see LOCAL-GENERATION.md.
+torch>=2.6,<3
+diffusers>=0.38,<1
+transformers>=4.57.3,<5
+accelerate>=1.14,<2
+safetensors>=0.8,<1
+Pillow>=12,<13
+fastapi>=0.115.2,<1
+uvicorn>=0.40,<1

@@ -1,0 +1,19 @@
+{
+  "instructions": [
+    {
+      "stepId": "playback:presentation:1:asset-card-public-minion-v1:onPlay",
+      "instructionKind": "PlayAsset",
+      "timelineEntryId": "presentation:1:asset-card-public-minion-v1:onPlay",
+      "sourceEventSeq": 1,
+      "cueType": "OnPlay",
+      "assetRef": "assets/audio/card_public_minion_on_play.wav",
+      "priority": 10,
+      "clientMaySkip": true,
+      "reason": "CARD_PLAYED"
+    }
+  ],
+  "nextState": {
+    "playedStepIds": ["playback:presentation:1:asset-card-public-minion-v1:onPlay"],
+    "activeInstanceCounts": { "assets/audio/card_public_minion_on_play.wav": 1 }
+  }
+}

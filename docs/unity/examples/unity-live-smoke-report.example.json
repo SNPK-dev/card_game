@@ -1,0 +1,68 @@
+{
+  "startedAt": "2026-07-08T00:00:00.0000000Z",
+  "completedAt": "2026-07-08T00:00:03.0000000Z",
+  "unityVersion": "6000.3.2f1",
+  "backendUrl": "http://localhost:5000",
+  "matchId": "unity-live-smoke-20260708000000",
+  "playerIds": ["player-1", "player-2"],
+  "spectatorId": "spectator-1",
+  "playerOneTokenPresent": true,
+  "playerTwoTokenPresent": true,
+  "spectatorTokenPresent": true,
+  "bootSucceeded": true,
+  "capabilityStatus": "Backend ok; ready",
+  "seedSucceeded": true,
+  "seedStatus": "seeded",
+  "stateHashes": {
+    "start": "sha256:example-start",
+    "player1": "sha256:example-player1",
+    "player2": "sha256:example-player2",
+    "spectator": "sha256:example-spectator",
+    "afterCommand": "sha256:example-after-command",
+    "reconnect": "sha256:example-reconnect"
+  },
+  "commandSubmitted": "END_TURN",
+  "commandCountBefore": 0,
+  "commandCountAfter": 1,
+  "eventCount": 2,
+  "lastEventSeq": 2,
+  "refreshedLegalActionCount": 1,
+  "reconnectStatus": {
+    "succeeded": true,
+    "beforeStateHash": "sha256:example-after-command",
+    "afterStateHash": "sha256:example-reconnect",
+    "beforeEventCursor": 2,
+    "afterEventCursor": 2,
+    "missedEventCount": 0
+  },
+  "replayVerified": true,
+  "replayFinalStateHash": "sha256:example-reconnect",
+  "hiddenInfoAssertions": [
+    {
+      "name": "player-projection-player-1",
+      "passed": true,
+      "message": "Opponent hidden identities are absent."
+    },
+    {
+      "name": "player-projection-player-2",
+      "passed": true,
+      "message": "Opponent hidden identities are absent."
+    },
+    {
+      "name": "spectator-projection",
+      "passed": true,
+      "message": "Spectator hidden identities are absent."
+    }
+  ],
+  "steps": [
+    {
+      "name": "boot",
+      "succeeded": true,
+      "startedAt": "2026-07-08T00:00:00.0000000Z",
+      "completedAt": "2026-07-08T00:00:00.1000000Z",
+      "error": ""
+    }
+  ],
+  "errors": [],
+  "finalVerdict": "unity-client-full-live-match-smoke-ready"
+}

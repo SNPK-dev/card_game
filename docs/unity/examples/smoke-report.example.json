@@ -1,0 +1,33 @@
+{
+  "matchId": "unity-bot-smoke-match",
+  "decksUsed": ["deck-p1", "deck-p2"],
+  "commandsSubmitted": 9,
+  "commandsUsed": [
+    "END_TURN",
+    "END_TURN",
+    "END_TURN",
+    "END_TURN",
+    "END_TURN",
+    "END_TURN",
+    "END_TURN",
+    "END_TURN",
+    "CONCEDE"
+  ],
+  "eventCount": 23,
+  "finalStateHash": "48D8788CF86B371C03275FE0C568682AAB9EE9CFB434ECB32BCB2AE549B5C5E5",
+  "terminalReason": "CONCEDED",
+  "replayVerified": true,
+  "eventSequenceMonotonic": true,
+  "reconnectStateHashMatches": true,
+  "effectFamiliesObserved": ["turn", "concede", "event-poll", "reconnect", "replay"],
+  "hiddenInfoAssertions": ["spectator-hidden-zones-redacted"],
+  "evidenceArtifactRefs": [
+    "unity-bot-smoke-match/unity-dry-run/events.json",
+    "unity-bot-smoke-match/unity-dry-run/reconnect.json",
+    "unity-bot-smoke-match/unity-dry-run/replay.json"
+  ],
+  "startedAt": "2026-07-07T13:38:27Z",
+  "completedAt": "2026-07-07T13:38:28Z",
+  "durationMs": 745.1005,
+  "reportKind": "unity-bot-smoke"
+}

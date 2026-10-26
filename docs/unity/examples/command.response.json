@@ -1,0 +1,39 @@
+{
+  "succeeded": true,
+  "state": {
+    "matchId": "unity-local-match",
+    "viewKind": "PLAYER",
+    "viewerPlayerId": "player-1",
+    "revision": 2,
+    "stateHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+    "activePlayerId": "player-1",
+    "turnNumber": 1,
+    "phase": "TURN_START",
+    "isTerminal": false,
+    "terminalReason": "",
+    "players": {},
+    "pendingChoices": {},
+    "nextEventSeq": 2,
+    "commandCount": 1
+  },
+  "events": [
+    {
+      "eventSeq": 1,
+      "parentEventSeq": null,
+      "commandSeq": 1,
+      "eventType": "CARD_PLAYED",
+      "category": "COMMITTED",
+      "phase": "TURN_START",
+      "sourceRefs": [{ "refType": "CARD", "refId": "player-1:card_public_minion:001", "zone": "HAND", "controllerPlayerId": "player-1" }],
+      "targetRefs": [],
+      "payload": [{ "key": "cardId", "value": { "valueKind": "STRING", "stringValue": "card_public_minion", "intValue": null, "boolValue": null, "stringValues": [] } }],
+      "mutationBatchRef": "batch:0001",
+      "mutationRefs": ["mutation:0001"],
+      "rngRollRefs": [],
+      "preStateHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "postStateHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "visibility": "PUBLIC"
+    }
+  ],
+  "diagnostics": []
+}

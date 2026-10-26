@@ -1,0 +1,17 @@
+{
+  "eventSeq": 5,
+  "parentEventSeq": null,
+  "commandSeq": 4,
+  "eventType": "GAME_ENDED",
+  "category": "SYSTEM",
+  "phase": "TURN_END",
+  "sourceRefs": [{ "refType": "PLAYER", "refId": "player-2", "zone": null, "controllerPlayerId": "player-2" }],
+  "targetRefs": [],
+  "payload": [{ "key": "reason", "value": { "valueKind": "STRING", "stringValue": "CONCEDED", "intValue": null, "boolValue": null, "stringValues": [] } }],
+  "mutationBatchRef": "batch:0005",
+  "mutationRefs": ["mutation:0005"],
+  "rngRollRefs": [],
+  "preStateHash": "sha256:5555555555555555555555555555555555555555555555555555555555555555",
+  "postStateHash": "sha256:6666666666666666666666666666666666666666666666666666666666666666",
+  "visibility": "PUBLIC"
+}

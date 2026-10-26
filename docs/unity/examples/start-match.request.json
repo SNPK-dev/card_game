@@ -1,0 +1,11 @@
+{
+  "matchId": "unity-local-match",
+  "gameId": "unity-local-game",
+  "deckIds": ["deck-p1", "deck-p2"],
+  "playerSessionTokens": {
+    "player-1": "unity-local-session-p1",
+    "player-2": "unity-local-session-p2"
+  },
+  "startingPlayerId": "player-1",
+  "spectatorSessionTokens": ["unity-local-session-s1"]
+}

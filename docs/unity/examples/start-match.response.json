@@ -1,0 +1,21 @@
+{
+  "succeeded": true,
+  "matchId": "unity-local-match",
+  "state": {
+    "matchId": "unity-local-match",
+    "viewKind": "SPECTATOR",
+    "viewerPlayerId": null,
+    "revision": 1,
+    "stateHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "activePlayerId": "player-1",
+    "turnNumber": 1,
+    "phase": "TURN_START",
+    "isTerminal": false,
+    "terminalReason": "",
+    "players": {},
+    "pendingChoices": {},
+    "nextEventSeq": 1,
+    "commandCount": 0
+  },
+  "diagnostics": []
+}

@@ -1,0 +1,22 @@
+{
+  "succeeded": true,
+  "state": {
+    "matchId": "unity-local-match",
+    "viewKind": "PLAYER",
+    "viewerPlayerId": "player-1",
+    "revision": 2,
+    "stateHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+    "activePlayerId": "player-1",
+    "turnNumber": 1,
+    "phase": "TURN_START",
+    "isTerminal": false,
+    "terminalReason": "",
+    "players": {},
+    "pendingChoices": {},
+    "nextEventSeq": 2,
+    "commandCount": 1
+  },
+  "events": [],
+  "nextEventSeq": 2,
+  "diagnostics": []
+}

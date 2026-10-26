@@ -1,0 +1,6 @@
+{
+  "code": "MATCH_SESSION_FORBIDDEN",
+  "message": "The session token is missing, expired, or not authorized for this match/player.",
+  "retryable": false,
+  "suggestedUnityBehavior": "Return to session creation or reconnect with a valid token; do not resubmit the command."
+}

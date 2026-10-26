@@ -1,0 +1,6 @@
+{
+  "code": "VALIDATION_ERROR",
+  "message": "The request is missing a required field or contains an illegal command payload.",
+  "retryable": false,
+  "suggestedUnityBehavior": "Fix the request from the current legal action template and show a non-retryable UI error."
+}

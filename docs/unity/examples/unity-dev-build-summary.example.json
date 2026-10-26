@@ -1,0 +1,11 @@
+{
+  "mode": "--webgl-dev",
+  "status": "passed",
+  "skipReason": "",
+  "unityEditorConfigured": true,
+  "projectPath": "clients/unity/CardGame.Unity",
+  "logPath": "artifacts/unity-build-logs/dev-build-smoke-20260708T090000Z.log",
+  "outputPath": "artifacts/unity-dev-builds/webgl",
+  "exitCode": 0,
+  "timestamp": "20260708T090000Z"
+}

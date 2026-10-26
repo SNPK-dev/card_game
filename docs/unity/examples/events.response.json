@@ -1,0 +1,24 @@
+{
+  "succeeded": true,
+  "events": [
+    {
+      "eventSeq": 1,
+      "parentEventSeq": null,
+      "commandSeq": 1,
+      "eventType": "CARD_PLAYED",
+      "category": "COMMITTED",
+      "phase": "TURN_START",
+      "sourceRefs": [{ "refType": "CARD", "refId": "player-1:card_public_minion:001", "zone": "HAND", "controllerPlayerId": "player-1" }],
+      "targetRefs": [],
+      "payload": [],
+      "mutationBatchRef": "batch:0001",
+      "mutationRefs": ["mutation:0001"],
+      "rngRollRefs": [],
+      "preStateHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "postStateHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "visibility": "PUBLIC"
+    }
+  ],
+  "nextEventSeq": 2,
+  "diagnostics": []
+}

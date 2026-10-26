@@ -1,0 +1,17 @@
+{
+  "eventSeq": 2,
+  "parentEventSeq": null,
+  "commandSeq": 1,
+  "eventType": "ENTITY_DAMAGED",
+  "category": "COMMITTED",
+  "phase": "ON_PLAY",
+  "sourceRefs": [{ "refType": "CARD", "refId": "card_damage_spell_v1", "zone": "GRAVEYARD", "controllerPlayerId": "player-1" }],
+  "targetRefs": [{ "refType": "ENTITY_INSTANCE", "refId": "entity-player-2-hero", "zone": "BOARD", "controllerPlayerId": "player-2" }],
+  "payload": [{ "key": "amount", "value": { "valueKind": "INT", "stringValue": null, "intValue": 2, "boolValue": null, "stringValues": [] } }],
+  "mutationBatchRef": "batch:0002",
+  "mutationRefs": ["mutation:0002"],
+  "rngRollRefs": [],
+  "preStateHash": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+  "postStateHash": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+  "visibility": "PUBLIC"
+}

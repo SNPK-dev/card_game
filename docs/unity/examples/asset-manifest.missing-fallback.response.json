@@ -1,0 +1,14 @@
+{
+  "assetManifestId": "asset-card-placeholder-v1",
+  "assetManifestVersion": "asset-manifest-bootstrap-0.1.0",
+  "cardId": "card_missing_media",
+  "cardVersionId": "card_missing_media_v1",
+  "visualAssetMode": "None",
+  "audioAssetMode": "None",
+  "visualManifest": null,
+  "audioManifest": null,
+  "fallbackPolicy": { "allowSilence": true, "fallbackAssetRefs": ["assets/placeholders/card.png"] },
+  "moderationStatus": "NotRequired",
+  "createdAt": "2026-07-07T00:00:00Z",
+  "contentHash": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+}

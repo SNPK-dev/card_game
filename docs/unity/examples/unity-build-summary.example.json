@@ -1,0 +1,20 @@
+{
+  "target": "webgl",
+  "mode": "--webgl-rc",
+  "unityVersion": "6000.3.2f1",
+  "projectPath": "clients/unity/CardGame.Unity",
+  "startedAt": "2026-07-08T12:00:00Z",
+  "completedAt": "2026-07-08T12:01:00Z",
+  "durationMs": 60000,
+  "result": "passed",
+  "outputPath": "artifacts/unity-builds/webgl/20260708T120000Z/rc",
+  "logPath": "artifacts/unity-build-logs/20260708T120000Z/unity-build.log",
+  "buildSizeBytes": 1234567,
+  "sceneIncluded": true,
+  "rootHierarchyValidated": true,
+  "missingScriptsCount": 0,
+  "warningsCount": 0,
+  "errorsCount": 0,
+  "limitationOrSkipReason": "",
+  "exitCode": 0
+}

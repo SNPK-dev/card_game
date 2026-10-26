@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "unity-mcp-inspection-report.v1",
+  "timestampUtc": "2026-07-08T12:00:00Z",
+  "mcpEndpoint": "http://127.0.0.1:8080",
+  "manualStartupCommand": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\uvx.exe --from \"mcpforunityserver==10.0.0\" mcp-for-unity --transport http --http-url http://127.0.0.1:8080 --project-scoped-tools",
+  "toolsListed": true,
+  "resourcesListed": true,
+  "toolCount": 47,
+  "resourceCount": 19,
+  "activeInstanceId": "CardGame.Unity@424c796f5d3136e8",
+  "projectPath": "/path/to/card-game/clients/unity/CardGame.Unity",
+  "unityVersion": "6000.3.2f1",
+  "editorState": {
+    "readyForTools": true,
+    "isCompiling": false,
+    "isPlaying": false
+  },
+  "scene": "Assets/Scenes/CardGameLocalMatch.unity",
+  "sceneLoad": "passed",
+  "rootHierarchy": "passed",
+  "missingScripts": 0,
+  "componentInspection": {
+    "staticRootComponent": "DebugMatchBootstrapper",
+    "runtimeEquivalents": [
+      "BackendApiClient",
+      "GameShellPresenter",
+      "PresentationPlaybackRunner",
+      "AudioPlaybackController"
+    ]
+  },
+  "console": {
+    "projectErrors": 0,
+    "preInspectionEditorServiceNoise": [
+      "UnityConnectWebRequestException: Token Exchange failed due a failure with the web request."
+    ]
+  },
+  "playModeSanity": "passed",
+  "batchmodeCrossReference": "Run RC/full-live/dev-build validation after closing the manually opened Unity Editor.",
+  "finalMcpVerdict": "unity-mcp-inspection-passed"
+}

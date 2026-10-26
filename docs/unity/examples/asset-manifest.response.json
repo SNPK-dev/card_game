@@ -1,0 +1,21 @@
+{
+  "assetManifestId": "asset-card-public-minion-v1",
+  "assetManifestVersion": "asset-manifest-bootstrap-0.1.0",
+  "cardId": "card_public_minion",
+  "cardVersionId": "card_public_minion_v1",
+  "visualAssetMode": "StaticImage",
+  "audioAssetMode": "SfxOnly",
+  "visualManifest": {
+    "visualManifestId": "visual-card-public-minion-v1",
+    "visualManifestVersion": "visual-bootstrap-0.1.0",
+    "assetRef": "assets/images/card_public_minion.png",
+    "format": "png",
+    "moderationStatus": "Passed",
+    "contentHash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "audioManifest": null,
+  "fallbackPolicy": { "allowSilence": true, "fallbackAssetRefs": [] },
+  "moderationStatus": "Passed",
+  "createdAt": "2026-07-07T00:00:00Z",
+  "contentHash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+}

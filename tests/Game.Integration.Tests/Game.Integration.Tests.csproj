@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.0" />
+    <PackageReference Include="xunit.v3" Version="3.2.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Game.Application\Game.Application.csproj" />
+    <ProjectReference Include="..\..\src\Game.Api\Game.Api.csproj" />
+    <ProjectReference Include="..\..\src\Game.Domain\Game.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Game.Generator\Game.Generator.csproj" />
+    <ProjectReference Include="..\..\src\Game.Infrastructure\Game.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\Game.ReferenceHeadlessClient\Game.ReferenceHeadlessClient.csproj" />
+    <ProjectReference Include="..\..\src\Game.Shared\Game.Shared.csproj" />
+    <ProjectReference Include="..\..\src\Game.UnityClient.Contracts\Game.UnityClient.Contracts.csproj" />
+  </ItemGroup>
+</Project>

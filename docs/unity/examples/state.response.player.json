@@ -1,0 +1,109 @@
+{
+  "matchId": "unity-local-match",
+  "viewKind": "PLAYER",
+  "viewerPlayerId": "player-1",
+  "revision": 1,
+  "stateHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "activePlayerId": "player-1",
+  "turnNumber": 1,
+  "phase": "TURN_START",
+  "isTerminal": false,
+  "terminalReason": "",
+  "players": {
+    "player-1": {
+      "playerId": "player-1",
+      "relationship": "SELF",
+      "zones": {
+        "deck": { "zone": "DECK", "count": 1, "cards": [] },
+        "hand": {
+          "zone": "HAND",
+          "count": 1,
+          "cards": [
+            {
+              "cardInstanceId": "player-1:card_public_minion:001",
+              "cardId": "card_public_minion",
+              "cardVersion": "card_public_minion_v1",
+              "ownerPlayerId": "player-1",
+              "cardType": "MINION_CARD",
+              "visibility": "PRIVATE",
+              "baseManaCost": 3,
+              "effectiveManaCost": 2
+            }
+          ]
+        },
+        "graveyard": { "zone": "GRAVEYARD", "count": 0, "cards": [] },
+        "secretZone": { "zone": "SECRET_ZONE", "count": 0, "cards": [] },
+        "setAside": { "zone": "SET_ASIDE", "count": 0, "cards": [] },
+        "board": []
+      },
+      "hero": {
+        "entityInstanceId": "hero:player-1",
+        "sourceCardInstanceId": "hero-card:player-1",
+        "controllerPlayerId": "player-1",
+        "entityType": "Hero",
+        "attack": 0,
+        "health": 30,
+        "damage": 0,
+        "keywords": null
+      },
+      "mana": 10,
+      "maxMana": 10,
+      "armor": 0,
+      "fatigueCounter": 0,
+      "modifiers": [],
+      "weapon": null,
+      "location": null,
+      "heroPower": null,
+      "quests": [],
+      "secrets": [],
+      "auras": []
+    },
+    "player-2": {
+      "playerId": "player-2",
+      "relationship": "OPPONENT",
+      "zones": {
+        "deck": { "zone": "DECK", "count": 2, "cards": [] },
+        "hand": { "zone": "HAND", "count": 1, "cards": [] },
+        "graveyard": { "zone": "GRAVEYARD", "count": 0, "cards": [] },
+        "secretZone": { "zone": "SECRET_ZONE", "count": 1, "cards": [] },
+        "setAside": { "zone": "SET_ASIDE", "count": 0, "cards": [] },
+        "board": []
+      },
+      "hero": {
+        "entityInstanceId": "hero:player-2",
+        "sourceCardInstanceId": "hero-card:player-2",
+        "controllerPlayerId": "player-2",
+        "entityType": "Hero",
+        "attack": 0,
+        "health": 30,
+        "damage": 0,
+        "keywords": null
+      },
+      "mana": 10,
+      "maxMana": 10,
+      "armor": 0,
+      "fatigueCounter": 0,
+      "modifiers": [],
+      "weapon": null,
+      "location": null,
+      "heroPower": null,
+      "quests": [],
+      "secrets": [
+        {
+          "secretId": "secret:player-2:001",
+          "controllerPlayerId": "player-2",
+          "isRevealed": false,
+          "visibility": "HIDDEN",
+          "sourceCardInstanceId": null,
+          "sourceCardVersion": null,
+          "revealEventType": null,
+          "effectId": null
+        }
+      ],
+      "auras": []
+    }
+  },
+  "pendingChoices": {},
+  "nextEventSeq": 1,
+  "commandCount": 0
+}

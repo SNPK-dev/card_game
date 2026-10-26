@@ -1,0 +1,174 @@
+{
+  "id": "ruleset-production-core-v1",
+  "sourceProfileId": "ruleset-production-core-v1",
+  "sourceProfileVersion": "1.0.0",
+  "resolvedAt": "2026-07-02T00:00:00+00:00",
+  "resolvedBy": "unity-test-card-pack",
+  "resolvedHash": "resolved-unity-test-card-pack-hero-powers-v3",
+  "formatId": "mvp_internal",
+  "cardSetId": "core_generated_alpha",
+  "enabledMechanics": [
+    "BATTLECRY",
+    "DEATHRATTLE",
+    "DAMAGE_PREVENTION",
+    "AURA_REFRESH",
+    "BOARD_ATTACK_MODIFIER",
+    "GRAVEYARD_RESURRECT",
+    "LOCATION_PLAY",
+    "WEAPON_EQUIP",
+    "HERO_POWER_ACTIVATION",
+    "RANDOM_TARGET_RESOLUTION",
+    "VANILLA_MINION"
+  ],
+  "disabledMechanics": [],
+  "formatMechanicStates": [],
+  "allowedEffectKinds": [
+    "SIMPLE_PLAY_EFFECT",
+    "DEATHRATTLE_EFFECT",
+    "AURA_EFFECT",
+    "LOCATION_ABILITY_EFFECT"
+  ],
+  "allowedActions": [
+    "PLAY_CARD",
+    "ATTACK",
+    "USE_HERO_POWER",
+    "ACTIVATE_LOCATION",
+    "END_TURN",
+    "CONCEDE",
+    "DEAL_DAMAGE",
+    "DAMAGE_DISTRIBUTION",
+    "DRAW_CARD",
+    "HEAL",
+    "PREVENT_DAMAGE",
+    "APPLY_AURA",
+    "RESURRECT"
+  ],
+  "allowedKeywords": [
+    "BATTLECRY",
+    "DEATHRATTLE",
+    "DAMAGE_PREVENTION",
+    "WEAPON",
+    "LOCATION",
+    "AURA",
+    "HEAL",
+    "RESURRECT",
+    "RANDOM_TARGET"
+  ],
+  "allowedSourceZones": [
+    "HAND",
+    "BOARD",
+    "DECK",
+    "GRAVEYARD",
+    "SET_ASIDE"
+  ],
+  "allowedPhases": [
+    "ON_PLAY",
+    "DEATHRATTLE_PHASE",
+    "AURA_REFRESH"
+  ],
+  "allowedPools": [
+    "UNITY_FIXED_POOL"
+  ],
+  "allowedCardTypes": [
+    "MINION_CARD",
+    "SPELL_CARD",
+    "WEAPON_CARD",
+    "LOCATION_CARD",
+    "HERO_CARD",
+    "HERO_POWER_CARD"
+  ],
+  "allowedEntityTypes": [
+    "MINION",
+    "HERO",
+    "WEAPON",
+    "LOCATION",
+    "CARD_IN_GRAVEYARD"
+  ],
+  "allowedRarities": [
+    "COMMON",
+    "RARE",
+    "EPIC"
+  ],
+  "allowedClasses": [
+    "mage"
+  ],
+  "allowedTribes": [],
+  "limits": {
+    "maxComplexityScore": 30,
+    "maxRandomnessScore": 25,
+    "maxEventCountPerCard": 20,
+    "maxEventCountPerTurn": 80,
+    "maxRepeatCount": 7,
+    "maxGeneratedCardsPerEffect": 4,
+    "maxHistoryQueryScope": "LIMITED",
+    "maxActionsPerEffect": 3,
+    "maxEffectsPerCard": 2,
+    "maxChoiceCount": 4,
+    "maxDiscoverOfferCount": 4,
+    "maxBoardSummonsPerAction": 4,
+    "maxDrawPerAction": 3,
+    "maxManaCostReduction": 2,
+    "maxTemporaryCostReduction": 3,
+    "maxPermanentCostReduction": 1,
+    "maxBoardSize": 7,
+    "maxHandSize": 10
+  },
+  "validationPolicy": {
+    "policyId": "validation_unity_pack",
+    "schemaValidation": true,
+    "deserializationValidation": true,
+    "semanticValidation": true,
+    "ruleValidation": true,
+    "staticAnalysis": true,
+    "failOnUnknownMechanic": true,
+    "failOnDeprecatedMechanic": false,
+    "failOnDisabledMechanic": false,
+    "allowLegacyDeprecatedMechanics": false
+  },
+  "balancePolicy": {
+    "policyId": "balance_unity_pack",
+    "requireBalanceReport": false,
+    "requireHumanReviewAboveRisk": "HIGH",
+    "autoRejectRiskFlags": [],
+    "maxSimulationWinrateDelta": 0.05,
+    "maxComplexityScore": 30,
+    "maxRandomnessSwingScore": 25,
+    "maxEventCountDelta": 0.1,
+    "minSimulationSampleSize": 0,
+    "confidenceInterval": 0,
+    "baselineDeckSetId": "baseline",
+    "seedSetId": "seed",
+    "outlierHandlingPolicy": "none"
+  },
+  "simulationPolicy": {
+    "policyId": "simulation_unity_pack",
+    "requiredScenarioSets": [],
+    "requiredEdgeCases": [],
+    "minRandomBotGames": 0,
+    "minBaselineDeckGames": 0,
+    "requireReplayHashConsistency": false,
+    "maxTurns": 30,
+    "maxEventCount": 80
+  },
+  "publicationPolicy": {
+    "policyId": "publication_unity_pack",
+    "requireValidationPass": true,
+    "requireSimulationPass": false,
+    "requireReplayPass": false,
+    "requireBalanceReview": false,
+    "requireHumanApproval": false,
+    "allowAutoPublish": false,
+    "allowExperimentalPublication": false,
+    "allowedPublicationStatuses": [
+      "INTERNAL",
+      "UNITY_BASELINE"
+    ]
+  },
+  "legacyPolicy": {
+    "allowDeprecatedMechanicsForReplay": false,
+    "allowDeprecatedMechanicsForNewCards": false,
+    "allowDisabledMechanicsForReplay": false,
+    "allowDisabledMechanicsForNewCards": false,
+    "replayProfilePinningRequired": true
+  }
+}

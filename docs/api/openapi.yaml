@@ -1,0 +1,1017 @@
+openapi: 3.1.0
+info:
+  title: Card Game Unity Public API
+  version: unity-contract-2026-07-07
+  description: Stable HTTP contract for the Unity client bootstrap, match runtime, event polling, reconnect, replay verification, assets, and presentation playback.
+servers:
+  - url: http://localhost:5000
+security:
+  - SessionToken: []
+paths:
+  /health:
+    get:
+      security: []
+      summary: Health probe.
+      responses:
+        "200":
+          description: Backend is accepting requests.
+          content: { application/json: { schema: { $ref: "#/components/schemas/HealthResponse" } } }
+  /engine/capabilities:
+    get:
+      security: []
+      summary: Runtime capability and compatibility registry.
+      responses:
+        "200":
+          description: Current backend capability registry.
+          content: { application/json: { schema: { $ref: "#/components/schemas/EngineCapabilityRegistry" } } }
+  /catalog/snapshots/current:
+    get:
+      security: []
+      summary: Latest catalog snapshot for local/demo boot.
+      responses:
+        "200":
+          description: Latest catalog snapshot or 404 when none is stored.
+          content: { application/json: { schema: { $ref: "#/components/schemas/CatalogSnapshot" } } }
+        "404": { $ref: "#/components/responses/NotFoundError" }
+  /catalog/snapshots/{snapshotId}:
+    get:
+      security: []
+      summary: Catalog snapshot by id.
+      parameters: [ { $ref: "#/components/parameters/SnapshotId" } ]
+      responses:
+        "200": { description: Catalog snapshot, content: { application/json: { schema: { $ref: "#/components/schemas/CatalogSnapshot" } } } }
+        "404": { $ref: "#/components/responses/NotFoundError" }
+  /catalog/snapshots:
+    post:
+      security: []
+      summary: Store demo/local catalog data.
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: "#/components/schemas/CatalogSnapshot" } } }
+      responses:
+        "200": { description: Store result, content: { application/json: { schema: { $ref: "#/components/schemas/StorageResult" } } } }
+        "429": { $ref: "#/components/responses/RateLimitError" }
+  /catalog/snapshots/{snapshotId}/compatibility:
+    get:
+      security: []
+      summary: Catalog compatibility against current engine capabilities.
+      parameters: [ { $ref: "#/components/parameters/SnapshotId" } ]
+      responses:
+        "200": { description: Compatibility result, content: { application/json: { schema: { $ref: "#/components/schemas/CompatibilityResult" } } } }
+        "404": { $ref: "#/components/responses/NotFoundError" }
+  /decks/current:
+    get:
+      security: []
+      summary: List currently stored local/demo decks.
+      responses:
+        "200": { description: Deck list, content: { application/json: { schema: { type: array, items: { $ref: "#/components/schemas/DeckDefinition" } } } } }
+  /decks/{deckId}:
+    get:
+      security: []
+      summary: Deck by id.
+      parameters: [ { $ref: "#/components/parameters/DeckId" } ]
+      responses:
+        "200": { description: Deck definition, content: { application/json: { schema: { $ref: "#/components/schemas/DeckDefinition" } } } }
+        "404": { $ref: "#/components/responses/NotFoundError" }
+  /decks:
+    post:
+      security: []
+      summary: Store demo/local deck data.
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: "#/components/schemas/DeckDefinition" } } }
+      responses:
+        "200": { description: Store result, content: { application/json: { schema: { $ref: "#/components/schemas/StorageResult" } } } }
+        "429": { $ref: "#/components/responses/RateLimitError" }
+  /rulesets:
+    get:
+      security: []
+      summary: List authoritative backend ruleset definitions.
+      responses:
+        "200":
+          description: Ruleset definitions.
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: "#/components/schemas/RulesetDefinition" } }
+  /rulesets/{rulesetId}:
+    get:
+      security: []
+      summary: Latest authoritative backend ruleset definition by id.
+      parameters:
+        - name: rulesetId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Ruleset definition, content: { application/json: { schema: { $ref: "#/components/schemas/RulesetDefinition" } } } }
+        "404": { $ref: "#/components/responses/NotFoundError" }
+  /rulesets/{rulesetId}/versions/{version}:
+    get:
+      security: []
+      summary: Authoritative backend ruleset definition by id and version.
+      parameters:
+        - name: rulesetId
+          in: path
+          required: true
+          schema: { type: string }
+        - name: version
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Ruleset definition, content: { application/json: { schema: { $ref: "#/components/schemas/RulesetDefinition" } } } }
+        "404": { $ref: "#/components/responses/NotFoundError" }
+  /rulesets/profiles/current:
+    get:
+      security: []
+      summary: Latest resolved ruleset profile.
+      responses:
+        "200": { description: Resolved ruleset profile, content: { application/json: { schema: { $ref: "#/components/schemas/ResolvedRulesetProfile" } } } }
+        "404": { $ref: "#/components/responses/NotFoundError" }
+  /rulesets/profiles/{profileId}:
+    get:
+      security: []
+      summary: Resolved ruleset profile by id.
+      parameters: [ { $ref: "#/components/parameters/ProfileId" } ]
+      responses:
+        "200": { description: Resolved ruleset profile, content: { application/json: { schema: { $ref: "#/components/schemas/ResolvedRulesetProfile" } } } }
+        "404": { $ref: "#/components/responses/NotFoundError" }
+  /rulesets/profiles:
+    post:
+      security: []
+      summary: Store demo/local resolved ruleset profile.
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: "#/components/schemas/ResolvedRulesetProfile" } } }
+      responses:
+        "200": { description: Store result, content: { application/json: { schema: { $ref: "#/components/schemas/StorageResult" } } } }
+        "429": { $ref: "#/components/responses/RateLimitError" }
+  /sessions:
+    post:
+      security: []
+      summary: Create a player or spectator API session.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/CreateApiSessionRequest" }
+            examples:
+              player: { value: { playerId: player-1, sessionToken: session-p1 } }
+      responses:
+        "200": { description: Session created, content: { application/json: { schema: { $ref: "#/components/schemas/CreateApiSessionResult" } } } }
+        "400": { $ref: "#/components/responses/ValidationError" }
+        "429": { $ref: "#/components/responses/RateLimitError" }
+  /matches:
+    post:
+      summary: Start a match from stored decks and API sessions.
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: "#/components/schemas/ExternalMatchStartRequest" } } }
+      responses:
+        "200": { description: Match started, content: { application/json: { schema: { $ref: "#/components/schemas/ExternalMatchStartResult" } } } }
+        "400": { $ref: "#/components/responses/ValidationError" }
+  /matches/{matchId}/state:
+    get:
+      summary: Fetch current Unity-safe state view for the session viewer.
+      parameters: [ { $ref: "#/components/parameters/MatchId" } ]
+      responses:
+        "200": { description: Viewer-projected match state, content: { application/json: { schema: { $ref: "#/components/schemas/MatchStateView" } } } }
+        "403": { $ref: "#/components/responses/ForbiddenError" }
+  /matches/{matchId}/players/{playerId}/legal-actions:
+    get:
+      summary: Fetch commands currently legal for one player.
+      parameters: [ { $ref: "#/components/parameters/MatchId" }, { $ref: "#/components/parameters/PlayerId" } ]
+      responses:
+        "200": { description: Legal action list, content: { application/json: { schema: { $ref: "#/components/schemas/ExternalLegalActionsResult" } } } }
+        "403": { $ref: "#/components/responses/ForbiddenError" }
+  /matches/{matchId}/commands:
+    post:
+      summary: Submit one legal command.
+      parameters: [ { $ref: "#/components/parameters/MatchId" } ]
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: "#/components/schemas/ExternalCommandSubmissionRequest" } } }
+      responses:
+        "200": { description: Command accepted, content: { application/json: { schema: { $ref: "#/components/schemas/ExternalCommandSubmissionResult" } } } }
+        "400": { $ref: "#/components/responses/ValidationError" }
+        "403": { $ref: "#/components/responses/ForbiddenError" }
+        "429": { $ref: "#/components/responses/RateLimitError" }
+  /matches/{matchId}/events:
+    get:
+      summary: Poll viewer-filtered public events after an event sequence.
+      parameters:
+        - { $ref: "#/components/parameters/MatchId" }
+        - name: afterEventSeq
+          in: query
+          required: true
+          schema: { type: integer, format: int64, minimum: 0 }
+      responses:
+        "200": { description: Event page, content: { application/json: { schema: { $ref: "#/components/schemas/MatchEventsPollResult" } } } }
+        "403": { $ref: "#/components/responses/ForbiddenError" }
+  /matches/{matchId}/reconnect:
+    post:
+      summary: Rebuild viewer state and retrieve missed events.
+      parameters:
+        - { $ref: "#/components/parameters/MatchId" }
+        - name: afterEventSeq
+          in: query
+          required: true
+          schema: { type: integer, format: int64, minimum: 0 }
+      responses:
+        "200": { description: Reconnect state and missed events, content: { application/json: { schema: { $ref: "#/components/schemas/MatchReconnectResult" } } } }
+        "403": { $ref: "#/components/responses/ForbiddenError" }
+  /matches/{matchId}/replay/verify:
+    post:
+      summary: Verify canonical replay for a match.
+      parameters: [ { $ref: "#/components/parameters/MatchId" } ]
+      responses:
+        "200": { description: Replay verification result, content: { application/json: { schema: { $ref: "#/components/schemas/MatchReplayVerificationView" } } } }
+        "403": { $ref: "#/components/responses/ForbiddenError" }
+  /matches/{matchId}/evidence-artifacts:
+    get:
+      summary: Unity smoke/debug evidence artifact refs for a match.
+      parameters: [ { $ref: "#/components/parameters/MatchId" } ]
+      responses:
+        "200": { description: Evidence artifacts, content: { application/json: { schema: { type: array, items: { $ref: "#/components/schemas/MatchEvidenceArtifact" } } } } }
+        "403": { $ref: "#/components/responses/ForbiddenError" }
+  /assets/manifests/current:
+    get:
+      security: []
+      summary: Latest asset manifest.
+      responses:
+        "200": { description: Asset manifest, content: { application/json: { schema: { $ref: "#/components/schemas/AssetManifest" } } } }
+        "404": { $ref: "#/components/responses/NotFoundError" }
+  /assets/manifests/{assetManifestId}:
+    get:
+      security: []
+      summary: Asset manifest by id.
+      parameters: [ { $ref: "#/components/parameters/AssetManifestId" } ]
+      responses:
+        "200": { description: Asset manifest, content: { application/json: { schema: { $ref: "#/components/schemas/AssetManifest" } } } }
+        "404": { $ref: "#/components/responses/NotFoundError" }
+  /assets/manifests:
+    post:
+      security: []
+      summary: Store demo/local asset manifest.
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: "#/components/schemas/AssetManifest" } } }
+      responses:
+        "200": { description: Store result, content: { application/json: { schema: { $ref: "#/components/schemas/StorageResult" } } } }
+        "429": { $ref: "#/components/responses/RateLimitError" }
+  /assets/manifests/{assetManifestId}/compatibility:
+    get:
+      security: []
+      summary: Asset manifest compatibility against current engine capabilities.
+      parameters: [ { $ref: "#/components/parameters/AssetManifestId" } ]
+      responses:
+        "200": { description: Compatibility result, content: { application/json: { schema: { $ref: "#/components/schemas/CompatibilityResult" } } } }
+        "404": { $ref: "#/components/responses/NotFoundError" }
+  /assets/manifests/{assetManifestId}/presentation-hash:
+    get:
+      security: []
+      summary: Deterministic presentation catalog hash for a manifest.
+      parameters: [ { $ref: "#/components/parameters/AssetManifestId" } ]
+      responses:
+        "200": { description: Presentation hash, content: { application/json: { schema: { $ref: "#/components/schemas/PresentationHashResponse" } } } }
+        "404": { $ref: "#/components/responses/NotFoundError" }
+  /presentation/timelines:
+    post:
+      security: []
+      summary: Build a presentation timeline from public events and asset manifests.
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: "#/components/schemas/PresentationTimelineBuildRequest" } } }
+      responses:
+        "200": { description: Timeline result, content: { application/json: { schema: { $ref: "#/components/schemas/PresentationTimelineBuildResult" } } } }
+        "429": { $ref: "#/components/responses/RateLimitError" }
+  /presentation/playback-plans:
+    post:
+      security: []
+      summary: Build a playback plan from a presentation timeline.
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: "#/components/schemas/PresentationPlaybackPlanBuildRequest" } } }
+      responses:
+        "200": { description: Playback plan result, content: { application/json: { schema: { $ref: "#/components/schemas/PresentationPlaybackPlanBuildResult" } } } }
+        "429": { $ref: "#/components/responses/RateLimitError" }
+  /presentation/playback-instructions:
+    post:
+      security: []
+      summary: Build playback instructions for current Unity client playback state.
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: "#/components/schemas/PresentationPlaybackRuntimeRequest" } } }
+      responses:
+        "200": { description: Playback instructions, content: { application/json: { schema: { $ref: "#/components/schemas/PresentationPlaybackRuntimeResult" } } } }
+        "429": { $ref: "#/components/responses/RateLimitError" }
+components:
+  securitySchemes:
+    SessionToken:
+      type: apiKey
+      in: header
+      name: X-Session-Token
+      description: Required on match state, legal action, event, reconnect, replay, and evidence-artifact reads. Command submission also carries sessionToken in the JSON body.
+  parameters:
+    MatchId: { name: matchId, in: path, required: true, schema: { type: string } }
+    PlayerId: { name: playerId, in: path, required: true, schema: { type: string } }
+    DeckId: { name: deckId, in: path, required: true, schema: { type: string } }
+    SnapshotId: { name: snapshotId, in: path, required: true, schema: { type: string } }
+    ProfileId: { name: profileId, in: path, required: true, schema: { type: string } }
+    AssetManifestId: { name: assetManifestId, in: path, required: true, schema: { type: string } }
+  responses:
+    ValidationError:
+      description: Validation or illegal command error.
+      content: { application/json: { schema: { $ref: "#/components/schemas/UnityError" } } }
+    ForbiddenError:
+      description: Missing, expired, or unauthorized session.
+      content: { application/json: { schema: { $ref: "#/components/schemas/UnityError" } } }
+    NotFoundError:
+      description: Resource was not found.
+      content: { application/json: { schema: { $ref: "#/components/schemas/UnityError" } } }
+    RateLimitError:
+      description: Write rate limit exceeded.
+      content: { application/json: { schema: { $ref: "#/components/schemas/UnityError" } } }
+  schemas:
+    HealthResponse:
+      type: object
+      required: [status]
+      properties:
+        status: { type: string, enum: [ok] }
+    UnityError:
+      type: object
+      required: [code, message, retryable, suggestedUnityBehavior]
+      properties:
+        code: { type: string }
+        message: { type: string }
+        retryable: { type: boolean }
+        suggestedUnityBehavior: { type: string }
+        diagnostics: { type: array, items: { $ref: "#/components/schemas/Diagnostic" } }
+    Diagnostic:
+      type: object
+      required: [code, path, identifier, message]
+      properties:
+        code: { type: string }
+        path: { type: string }
+        identifier: { type: string }
+        message: { type: string }
+    StorageResult:
+      type: object
+      required: [succeeded]
+      properties:
+        succeeded: { type: boolean }
+        diagnostic: { type: [string, "null"] }
+    EngineCapabilityRegistry:
+      type: object
+      required: [engineVersion, apiContractVersion, supportedCommandTypes, supportedEventTypes, supportedAssetManifestVersions, minimumUnityClientContractVersion, defaultProductionRulesetId, defaultProductionRulesetVersion, productionDeckRulesAvailable]
+      properties:
+        engineVersion: { type: string }
+        apiContractVersion: { type: string }
+        stateSchemaVersion: { type: string }
+        eventSchemaVersion: { type: string }
+        assetManifestSchemaVersion: { type: string }
+        playbackSchemaVersion: { type: string }
+        minimumUnityClientContractVersion: { type: string }
+        supportedCommandTypes: { type: array, items: { type: string } }
+        supportedEventTypes: { type: array, items: { type: string } }
+        supportedAssetManifestVersions: { type: array, items: { type: string } }
+        defaultProductionRulesetId: { type: string }
+        defaultProductionRulesetVersion: { type: string }
+        productionDeckRulesAvailable: { type: boolean }
+        featureFlags: { type: array, items: { type: string } }
+    RulesetDefinition:
+      type: object
+      required: [rulesetId, rulesetVersion, displayName, environment, productionScale, deckRules, cardPoolPolicy]
+      properties:
+        rulesetId: { type: string }
+        rulesetVersion: { type: string }
+        displayName: { type: string }
+        environment: { type: string, enum: [development, test, production] }
+        productionScale: { type: boolean }
+        deckRules: { $ref: "#/components/schemas/DeckRules" }
+        cardPoolPolicy: { $ref: "#/components/schemas/CardPoolPolicy" }
+        compatibleCatalogIds: { type: [array, "null"], items: { type: string } }
+        compatibleCatalogVersions: { type: [array, "null"], items: { type: string } }
+    DeckRules:
+      type: object
+      required: [minimumDeckSize, maximumDeckSize, defaultDeckSize, maximumCopiesPerCard]
+      properties:
+        minimumDeckSize: { type: integer, minimum: 1 }
+        maximumDeckSize: { type: integer, minimum: 1 }
+        defaultDeckSize: { type: integer, minimum: 1 }
+        maximumCopiesPerCard: { type: integer, minimum: 1 }
+    CardPoolPolicy:
+      type: object
+      required: [catalogBound, requirePublishedCardVersion, allowUnknownCards]
+      properties:
+        catalogBound: { type: boolean }
+        requirePublishedCardVersion: { type: boolean }
+        allowUnknownCards: { type: boolean }
+    CreateApiSessionRequest:
+      type: object
+      required: [playerId]
+      properties:
+        playerId: { type: string }
+        sessionToken: { type: [string, "null"] }
+        ttl: { type: [string, "null"], description: Optional TimeSpan-compatible duration for tests/local use. }
+    CreateApiSessionResult:
+      type: object
+      required: [succeeded, diagnostics]
+      properties:
+        succeeded: { type: boolean }
+        session: { anyOf: [ { $ref: "#/components/schemas/ApiSession" }, { type: "null" } ] }
+        diagnostics: { type: array, items: { $ref: "#/components/schemas/Diagnostic" } }
+    ApiSession:
+      type: object
+      required: [sessionToken, playerId, createdAt, expiresAt]
+      properties:
+        sessionToken: { type: string }
+        playerId: { type: string }
+        createdAt: { type: string, format: date-time }
+        expiresAt: { type: string, format: date-time }
+    ExternalMatchStartRequest:
+      type: object
+      required: [matchId, gameId, deckIds, playerSessionTokens]
+      properties:
+        matchId: { type: string }
+        gameId: { type: string }
+        deckIds: { type: array, minItems: 2, items: { type: string } }
+        playerSessionTokens:
+          type: object
+          additionalProperties: { type: string }
+        startingPlayerId: { type: [string, "null"] }
+        spectatorSessionTokens: { type: [array, "null"], items: { type: string } }
+    ExternalMatchStartResult:
+      type: object
+      required: [succeeded, matchId, state, diagnostics]
+      properties:
+        succeeded: { type: boolean }
+        matchId: { type: [string, "null"] }
+        state: { anyOf: [ { $ref: "#/components/schemas/MatchStateView" }, { type: "null" } ] }
+        diagnostics: { type: array, items: { $ref: "#/components/schemas/Diagnostic" } }
+    MatchStateView:
+      type: object
+      required: [matchId, viewKind, viewerPlayerId, revision, stateHash, activePlayerId, turnNumber, phase, isTerminal, terminalReason, players, pendingChoices, nextEventSeq, commandCount]
+      properties:
+        matchId: { type: string }
+        viewKind: { type: string, enum: [PLAYER, SPECTATOR] }
+        viewerPlayerId: { type: [string, "null"] }
+        revision: { type: integer }
+        stateHash: { type: string }
+        activePlayerId: { type: [string, "null"] }
+        turnNumber: { type: integer }
+        phase: { type: string }
+        isTerminal: { type: boolean }
+        terminalReason: { type: string }
+        players:
+          type: object
+          additionalProperties: { $ref: "#/components/schemas/PublicPlayerStateView" }
+        pendingChoices:
+          type: object
+          additionalProperties: { $ref: "#/components/schemas/PublicChoiceView" }
+        nextEventSeq: { type: integer, format: int64 }
+        commandCount: { type: integer }
+    PublicPlayerStateView:
+      type: object
+      required: [playerId, relationship, zones, hero, mana, maxMana, armor, fatigueCounter, modifiers]
+      properties:
+        playerId: { type: string }
+        relationship: { type: string, enum: [SELF, OPPONENT, SPECTATED] }
+        zones: { $ref: "#/components/schemas/PublicPlayerZonesView" }
+        hero: { anyOf: [ { $ref: "#/components/schemas/PublicEntityView" }, { type: "null" } ] }
+        mana: { type: integer }
+        maxMana: { type: integer }
+        armor: { type: integer }
+        fatigueCounter: { type: integer }
+        modifiers: { type: array, items: { $ref: "#/components/schemas/PublicPlayerModifierView" } }
+        weapon: { anyOf: [ { $ref: "#/components/schemas/PublicEntityView" }, { type: "null" } ] }
+        location: { anyOf: [ { $ref: "#/components/schemas/PublicEntityView" }, { type: "null" } ] }
+        heroPower: { anyOf: [ { $ref: "#/components/schemas/PublicHeroPowerView" }, { type: "null" } ] }
+        quests: { type: [array, "null"], items: { $ref: "#/components/schemas/PublicQuestView" } }
+        secrets: { type: [array, "null"], items: { $ref: "#/components/schemas/PublicSecretView" } }
+        auras: { type: [array, "null"], items: { $ref: "#/components/schemas/PublicAuraView" } }
+    PublicPlayerZonesView:
+      type: object
+      required: [deck, hand, graveyard, secretZone, setAside, board]
+      properties:
+        deck: { $ref: "#/components/schemas/PublicZoneView" }
+        hand: { $ref: "#/components/schemas/PublicZoneView" }
+        graveyard: { $ref: "#/components/schemas/PublicZoneView" }
+        secretZone: { $ref: "#/components/schemas/PublicZoneView" }
+        setAside: { $ref: "#/components/schemas/PublicZoneView" }
+        board: { type: array, items: { $ref: "#/components/schemas/PublicEntityView" } }
+    PublicZoneView:
+      type: object
+      required: [zone, count, cards]
+      properties:
+        zone: { type: string, enum: [DECK, HAND, GRAVEYARD, SECRET_ZONE, SET_ASIDE] }
+        count: { type: integer }
+        cards: { type: array, items: { $ref: "#/components/schemas/PublicCardInstanceView" } }
+    PublicCardInstanceView:
+      type: object
+      required: [cardInstanceId, cardId, cardVersion, ownerPlayerId, cardType, visibility]
+      properties:
+        cardInstanceId: { type: [string, "null"] }
+        cardId: { type: [string, "null"] }
+        cardVersion: { type: [string, "null"] }
+        ownerPlayerId: { type: string }
+        cardType: { type: string }
+        visibility: { type: string, enum: [PUBLIC, PRIVATE, HIDDEN] }
+        baseManaCost: { type: [integer, "null"], minimum: 0 }
+        effectiveManaCost: { type: [integer, "null"], minimum: 0 }
+    PublicEntityView:
+      type: object
+      required: [entityInstanceId, sourceCardInstanceId, controllerPlayerId, entityType, attack, health, damage]
+      properties:
+        entityInstanceId: { type: string }
+        sourceCardInstanceId: { type: string }
+        controllerPlayerId: { type: string }
+        entityType: { type: string }
+        attack: { type: integer }
+        health: { type: integer }
+        damage: { type: integer }
+        keywords: { type: [array, "null"], items: { type: string } }
+    PublicHeroPowerView:
+      type: object
+      required: [sourceCardInstanceId, cost, activationTiming]
+      properties:
+        sourceCardInstanceId: { type: string }
+        cost: { type: integer }
+        activationTiming: { type: string }
+    PublicPlayerModifierView:
+      type: object
+      required: [modifierId, modifierType, amount, duration, priority, sourceRef]
+      properties:
+        modifierId: { type: string }
+        modifierType: { type: string }
+        amount: { type: integer }
+        duration: { type: string }
+        priority: { type: integer }
+        sourceRef: { type: string }
+    PublicQuestView:
+      type: object
+      required: [questId, sourceCardInstanceId, controllerPlayerId, progressEventType, progress, requiredProgress, isCompleted]
+      properties:
+        questId: { type: string }
+        sourceCardInstanceId: { type: string }
+        controllerPlayerId: { type: string }
+        progressEventType: { type: string }
+        progress: { type: integer }
+        requiredProgress: { type: integer }
+        isCompleted: { type: boolean }
+        rewardEffectId: { type: [string, "null"] }
+        sourceCardVersion: { type: [string, "null"] }
+    PublicSecretView:
+      type: object
+      required: [secretId, controllerPlayerId, isRevealed, visibility]
+      properties:
+        secretId: { type: string }
+        controllerPlayerId: { type: string }
+        isRevealed: { type: boolean }
+        visibility: { type: string, enum: [PUBLIC, HIDDEN] }
+        sourceCardInstanceId: { type: [string, "null"] }
+        sourceCardVersion: { type: [string, "null"] }
+        revealEventType: { type: [string, "null"] }
+        effectId: { type: [string, "null"] }
+    PublicAuraView:
+      type: object
+      required: [auraId, sourceEntityInstanceId, sourceCardInstanceId, sourceCardVersion, controllerPlayerId, effectId, priority]
+      properties:
+        auraId: { type: string }
+        sourceEntityInstanceId: { type: string }
+        sourceCardInstanceId: { type: string }
+        sourceCardVersion: { type: string }
+        controllerPlayerId: { type: string }
+        effectId: { type: string }
+        priority: { type: integer }
+    PublicChoiceView:
+      type: object
+      required: [choiceId, playerId, choiceType, visibilityPolicy, resultZone, sourceRef, options]
+      properties:
+        choiceId: { type: string }
+        playerId: { type: string }
+        choiceType: { type: string }
+        visibilityPolicy: { type: string, enum: [PRIVATE, PUBLIC] }
+        resultZone: { type: string }
+        sourceRef: { type: string }
+        options: { type: array, items: { $ref: "#/components/schemas/PublicChoiceOptionView" } }
+    PublicChoiceOptionView:
+      type: object
+      required: [optionId, itemKind, itemId, visibility]
+      properties:
+        optionId: { type: string }
+        itemKind: { type: string }
+        itemId: { type: [string, "null"] }
+        visibility: { type: string, enum: [PUBLIC, HIDDEN] }
+    MatchCommandDto:
+      type: object
+      required: [commandType, playerId]
+      properties:
+        commandType: { type: string, enum: [PLAY_CARD, ATTACK, END_TURN, CONCEDE, ACTIVATE_LOCATION, USE_HERO_POWER, RESOLVE_CHOICE] }
+        playerId: { type: string }
+        payload:
+          type: [object, "null"]
+          additionalProperties: { type: integer }
+          description: Numeric command parameters, for example manaCost, attack, health, or selectedIndex.
+        refs:
+          type: [object, "null"]
+          additionalProperties: { type: string }
+          description: String references such as cardInstanceId, targetEntityInstanceId, choiceId, and selectedOptionId.
+    ExternalLegalActionsResult:
+      type: object
+      required: [succeeded, legalActions, legalDiagnostics, diagnostics]
+      properties:
+        succeeded: { type: boolean }
+        legalActions: { type: array, items: { $ref: "#/components/schemas/MatchCommandDto" } }
+        legalDiagnostics: { type: array, items: { $ref: "#/components/schemas/LegalActionDiagnostic" } }
+        diagnostics: { type: array, items: { $ref: "#/components/schemas/Diagnostic" } }
+    LegalActionDiagnostic:
+      type: object
+      required: [code, playerId, commandType, message]
+      properties:
+        code: { type: string }
+        playerId: { type: string }
+        commandType: { type: string }
+        message: { type: string }
+        sourceRef: { type: [string, "null"] }
+        targetRef: { type: [string, "null"] }
+    ExternalCommandSubmissionRequest:
+      type: object
+      required: [sessionToken, command]
+      properties:
+        sessionToken: { type: string }
+        command: { $ref: "#/components/schemas/MatchCommandDto" }
+        commandId: { type: [string, "null"] }
+        expectedPreStateHash: { type: [string, "null"] }
+        correlationId: { type: [string, "null"] }
+    ExternalCommandSubmissionResult:
+      type: object
+      required: [succeeded, state, events, diagnostics]
+      properties:
+        succeeded: { type: boolean }
+        state: { anyOf: [ { $ref: "#/components/schemas/MatchStateView" }, { type: "null" } ] }
+        events: { type: array, items: { $ref: "#/components/schemas/PublicMatchEventRecord" } }
+        diagnostics: { type: array, items: { $ref: "#/components/schemas/Diagnostic" } }
+    MatchEventsPollResult:
+      type: object
+      required: [succeeded, events, nextEventSeq, diagnostics]
+      properties:
+        succeeded: { type: boolean }
+        events: { type: array, items: { $ref: "#/components/schemas/PublicMatchEventRecord" } }
+        nextEventSeq: { type: integer, format: int64 }
+        diagnostics: { type: array, items: { $ref: "#/components/schemas/Diagnostic" } }
+    MatchReconnectResult:
+      type: object
+      required: [succeeded, state, events, nextEventSeq, diagnostics]
+      properties:
+        succeeded: { type: boolean }
+        state: { anyOf: [ { $ref: "#/components/schemas/MatchStateView" }, { type: "null" } ] }
+        events: { type: array, items: { $ref: "#/components/schemas/PublicMatchEventRecord" } }
+        nextEventSeq: { type: integer, format: int64 }
+        diagnostics: { type: array, items: { $ref: "#/components/schemas/Diagnostic" } }
+    PublicMatchEventRecord:
+      type: object
+      required: [eventSeq, parentEventSeq, commandSeq, eventType, category, phase, sourceRefs, targetRefs, payload, mutationBatchRef, mutationRefs, rngRollRefs, preStateHash, postStateHash, visibility]
+      properties:
+        eventSeq: { type: integer, format: int64 }
+        parentEventSeq: { type: [integer, "null"], format: int64 }
+        commandSeq: { type: [integer, "null"], format: int64 }
+        eventType:
+          type: string
+          enum: [GAME_STARTED, TURN_STARTED, EXTRA_TURN_SCHEDULED, TURN_ENDED, CARD_PLAYED, CARD_MOVED_ZONE, CARD_DRAWN, CARD_DISCARDED, CARD_RETURNED_TO_HAND, MINION_SUMMONED, ENTITY_DAMAGED, DAMAGE_WOULD_BE_DEALT, REPLACEMENT_RESOLVED, ENTITY_HEALED, MANA_CHANGED, ENTITY_DESTROYED, ENTITY_DIED, DEATHRATTLE_TRIGGERED, SECRET_REVEALED, QUEST_PROGRESS_CHANGED, MODIFIER_APPLIED, MODIFIER_EXPIRED, AURA_REFRESHED, WEAPON_EQUIPPED, LOCATION_PLAYED, LOCATION_ACTIVATED, HERO_CARD_PLAYED, HERO_POWER_USED, HERO_POWER_REPLACED, CHOICE_CREATED, CHOICE_RESOLVED, RNG_ROLLED, GAME_ENDED, ENGINE_FAULTED]
+        category: { type: string, enum: [PROPOSED, COMMITTED, RESOLVER, DIAGNOSTIC, PRESENTATION, SYSTEM] }
+        phase: { type: string }
+        sourceRefs: { type: array, items: { $ref: "#/components/schemas/PublicEventRef" } }
+        targetRefs: { type: array, items: { $ref: "#/components/schemas/PublicEventRef" } }
+        payload: { type: array, items: { $ref: "#/components/schemas/PublicEventPayloadEntry" } }
+        mutationBatchRef: { type: [string, "null"] }
+        mutationRefs: { type: array, items: { type: string } }
+        rngRollRefs: { type: array, items: { type: string } }
+        preStateHash: { type: string }
+        postStateHash: { type: string }
+        visibility: { type: string, enum: [PUBLIC, OWNER_ONLY, CONTROLLER_ONLY, HIDDEN_TO_OPPONENT] }
+    PublicEventRef:
+      type: object
+      required: [refType, refId, zone, controllerPlayerId]
+      properties:
+        refType: { type: string }
+        refId: { type: string }
+        zone: { type: [string, "null"] }
+        controllerPlayerId: { type: [string, "null"] }
+    PublicEventPayloadEntry:
+      type: object
+      required: [key, value]
+      properties:
+        key: { type: string }
+        value: { $ref: "#/components/schemas/PublicEventPayloadValue" }
+    PublicEventPayloadValue:
+      type: object
+      required: [valueKind, stringValue, intValue, boolValue, stringValues]
+      properties:
+        valueKind: { type: string, enum: [STRING, INT, BOOL, STRING_LIST] }
+        stringValue: { type: [string, "null"] }
+        intValue: { type: [integer, "null"] }
+        boolValue: { type: [boolean, "null"] }
+        stringValues: { type: array, items: { type: string } }
+    MatchReplayVerificationView:
+      type: object
+      required: [succeeded, replay, diagnostics]
+      properties:
+        succeeded: { type: boolean }
+        replay: { $ref: "#/components/schemas/ReplayVerificationResult" }
+        diagnostics: { type: array, items: { $ref: "#/components/schemas/Diagnostic" } }
+    ReplayVerificationResult:
+      type: object
+      required: [isVerified, finalStateHash, derivedEventCount, rngRollRefs, diagnostics]
+      properties:
+        isVerified: { type: boolean }
+        finalStateHash: { type: [string, "null"] }
+        derivedEventCount: { type: integer }
+        rngRollRefs: { type: array, items: { type: string } }
+        rngTrace: { anyOf: [ { $ref: "#/components/schemas/ReplayTrace" }, { type: "null" } ] }
+        diagnostics: { type: array, items: { $ref: "#/components/schemas/Diagnostic" } }
+        debugTrace: { anyOf: [ { $ref: "#/components/schemas/ReplayTrace" }, { type: "null" } ] }
+    ReplayTrace:
+      type: object
+      required: [traceRef, contentHash, entries]
+      properties:
+        traceRef: { type: string }
+        contentHash: { type: string }
+        entries: { type: array, items: { $ref: "#/components/schemas/ReplayTraceEntry" } }
+    ReplayTraceEntry:
+      type: object
+      required: [seq, kind, value]
+      properties:
+        seq: { type: integer }
+        kind: { type: string }
+        value: { type: string }
+    CatalogSnapshot:
+      type: object
+      description: Unity consumes the listed boot fields; additional catalog card-definition metadata is opaque and must be ignored by Unity clients.
+      required: [snapshotId, rulesetId, profileHash, createdAt, cards]
+      properties:
+        snapshotId: { type: string }
+        rulesetId: { type: string }
+        profileHash: { type: string }
+        createdAt: { type: string, format: date-time }
+        cards: { type: array, items: { $ref: "#/components/schemas/CardVersionSummary" } }
+        compatibleRulesetIds: { type: [array, "null"], items: { type: string } }
+        compatibleRulesetVersions: { type: [array, "null"], items: { type: string } }
+        productionScaleCompatible: { type: boolean }
+      unevaluatedProperties: true
+    CardVersionSummary:
+      type: object
+      description: Unity consumes the listed card identity fields; additional generated card metadata is opaque catalog data.
+      required: [cardId, cardVersionId]
+      properties:
+        cardId: { type: string }
+        cardVersionId: { type: string }
+        published: { type: boolean }
+        displayName: { type: [string, "null"] }
+      unevaluatedProperties: true
+    DeckDefinition:
+      type: object
+      required: [deckId, ownerPlayerId, catalogSnapshotId, rulesetId, cards]
+      properties:
+        deckId: { type: string }
+        ownerPlayerId: { type: string }
+        playerId: { type: string }
+        catalogSnapshotId: { type: string }
+        rulesetId: { type: string }
+        rulesetProfileId: { type: string }
+        cards: { type: array, items: { $ref: "#/components/schemas/DeckCardRef" } }
+    DeckCardRef:
+      type: object
+      required: [cardId, count]
+      properties:
+        cardId: { type: string }
+        cardVersionId: { type: [string, "null"] }
+        count: { type: integer }
+    ResolvedRulesetProfile:
+      type: object
+      description: Unity consumes the listed compatibility fields; additional ruleset governance metadata is opaque boot data.
+      required: [profileId, rulesetId, profileVersion, createdAt, profileHash, allowedCommands]
+      properties:
+        profileId: { type: string }
+        rulesetId: { type: string }
+        profileVersion: { type: string }
+        createdAt: { type: string, format: date-time }
+        profileHash: { type: string }
+        allowedCommands: { type: array, items: { type: string } }
+      unevaluatedProperties: true
+    CompatibilityResult:
+      type: object
+      description: Unity consumes success and diagnostics; additional validator metadata is opaque compatibility detail.
+      required: [succeeded, diagnostics]
+      properties:
+        succeeded: { type: boolean }
+        diagnostics: { type: array, items: { $ref: "#/components/schemas/Diagnostic" } }
+      unevaluatedProperties: true
+    AssetManifest:
+      type: object
+      required: [assetManifestId, assetManifestVersion, cardId, cardVersionId, visualAssetMode, audioAssetMode, visualManifest, audioManifest, fallbackPolicy, moderationStatus, createdAt, contentHash]
+      properties:
+        assetManifestId: { type: string }
+        assetManifestVersion: { type: string }
+        cardId: { type: string }
+        cardVersionId: { type: string }
+        visualAssetMode: { type: string, enum: [None, StaticImage, IdleAnimation] }
+        audioAssetMode: { type: string, enum: [None, SfxOnly, VoiceLineOnly, SfxAndVoice, FullAudioSet] }
+        visualManifest: { anyOf: [ { $ref: "#/components/schemas/VisualAssetManifest" }, { type: "null" } ] }
+        audioManifest: { anyOf: [ { $ref: "#/components/schemas/AudioAssetManifest" }, { type: "null" } ] }
+        fallbackPolicy: { $ref: "#/components/schemas/AssetFallbackPolicy" }
+        moderationStatus: { type: string, enum: [NotRequired, Pending, Passed, Rejected] }
+        createdAt: { type: string, format: date-time }
+        contentHash: { type: string }
+    VisualAssetManifest:
+      type: object
+      required: [visualManifestId, visualManifestVersion, assetRef, format, moderationStatus, contentHash]
+      properties:
+        visualManifestId: { type: string }
+        visualManifestVersion: { type: string }
+        assetRef: { type: string }
+        format: { type: string }
+        moderationStatus: { type: string }
+        contentHash: { type: string }
+    AudioAssetManifest:
+      type: object
+      required: [audioManifestId, audioManifestVersion, cardId, cardVersionId, audioAssetMode, cues, fallbackCueRefs, localizationPolicy, volumeGroup, moderationStatus, contentHash]
+      properties:
+        audioManifestId: { type: string }
+        audioManifestVersion: { type: string }
+        cardId: { type: string }
+        cardVersionId: { type: string }
+        audioAssetMode: { type: string }
+        cues: { type: array, items: { $ref: "#/components/schemas/AudioCueDefinition" } }
+        fallbackCueRefs: { type: array, items: { type: string } }
+        localizationPolicy: { type: string }
+        volumeGroup: { type: string }
+        moderationStatus: { type: string }
+        contentHash: { type: string }
+    AudioCueDefinition:
+      type: object
+      required: [cueId, cueType, assetRef, durationMs, language, subtitleKey, volumeGroup, playbackPolicy, cooldownPolicy, fallbackCueId, contentHash]
+      properties:
+        cueId: { type: string }
+        cueType: { $ref: "#/components/schemas/AudioCueType" }
+        assetRef: { type: string }
+        durationMs: { type: integer }
+        language: { type: [string, "null"] }
+        subtitleKey: { type: [string, "null"] }
+        volumeGroup: { type: string }
+        playbackPolicy: { $ref: "#/components/schemas/PlaybackPolicy" }
+        cooldownPolicy: { $ref: "#/components/schemas/CooldownPolicy" }
+        fallbackCueId: { type: [string, "null"] }
+        contentHash: { type: string }
+    AudioCueType:
+      type: string
+      enum: [OnPlay, OnSummon, OnAttack, OnDeath, OnTrigger, OnSecretReveal, OnQuestComplete, OnHover, OnInspect, OnCrafted]
+    PlaybackPolicy:
+      type: object
+      required: [playOnce, interruptPolicy, overlapPolicy, priority, maxConcurrentInstances, clientMaySkip]
+      properties:
+        playOnce: { type: boolean }
+        interruptPolicy: { type: string }
+        overlapPolicy: { type: string }
+        priority: { type: integer }
+        maxConcurrentInstances: { type: integer }
+        clientMaySkip: { type: boolean }
+    CooldownPolicy:
+      type: object
+      required: [cooldownMs, scope]
+      properties:
+        cooldownMs: { type: integer }
+        scope: { type: string }
+    AssetFallbackPolicy:
+      type: object
+      required: [allowSilence, fallbackAssetRefs]
+      properties:
+        allowSilence: { type: boolean }
+        fallbackAssetRefs: { type: array, items: { type: string } }
+    PresentationHashResponse:
+      type: object
+      required: [assetManifestId, presentationCatalogHash]
+      properties:
+        assetManifestId: { type: string }
+        presentationCatalogHash: { type: string }
+    PresentationTimelineBuildRequest:
+      type: object
+      required: [timelineId, events, assetManifests]
+      properties:
+        timelineId: { type: string }
+        events: { type: array, items: { $ref: "#/components/schemas/PublicMatchEventRecord" } }
+        assetManifests: { type: array, items: { $ref: "#/components/schemas/AssetManifest" } }
+    PresentationTimelineBuildResult:
+      type: object
+      required: [timeline, presentationTimelineHash]
+      properties:
+        timeline: { $ref: "#/components/schemas/PresentationTimeline" }
+        presentationTimelineHash: { type: string }
+    PresentationTimeline:
+      type: object
+      required: [timelineId, presentationCatalogHash, firstSourceEventSeq, lastSourceEventSeq, entries]
+      properties:
+        timelineId: { type: string }
+        presentationCatalogHash: { type: string }
+        firstSourceEventSeq: { type: [integer, "null"], format: int64 }
+        lastSourceEventSeq: { type: [integer, "null"], format: int64 }
+        entries: { type: array, items: { $ref: "#/components/schemas/PresentationTimelineEntry" } }
+    PresentationTimelineEntry:
+      type: object
+      required: [entryId, entryKind, sourceEventSeq, cueType, sourceCardId, sourceCardVersionId, assetManifestId, assetRef, playbackPolicy, visibilityPolicy, fallbackPolicy, reason]
+      properties:
+        entryId: { type: string }
+        entryKind: { type: string, enum: [Cue, Silence] }
+        sourceEventSeq: { type: integer, format: int64 }
+        cueType: { $ref: "#/components/schemas/AudioCueType" }
+        sourceCardId: { type: [string, "null"] }
+        sourceCardVersionId: { type: [string, "null"] }
+        assetManifestId: { type: [string, "null"] }
+        assetRef: { type: [string, "null"] }
+        playbackPolicy: { anyOf: [ { $ref: "#/components/schemas/PlaybackPolicy" }, { type: "null" } ] }
+        visibilityPolicy: { type: string }
+        fallbackPolicy: { $ref: "#/components/schemas/AssetFallbackPolicy" }
+        reason: { type: string }
+    PresentationPlaybackPlanBuildRequest:
+      type: object
+      required: [playbackPlanId, timeline, presentationTimelineHash]
+      properties:
+        playbackPlanId: { type: string }
+        timeline: { $ref: "#/components/schemas/PresentationTimeline" }
+        presentationTimelineHash: { type: string }
+    PresentationPlaybackPlanBuildResult:
+      type: object
+      required: [playbackPlan]
+      properties:
+        playbackPlan: { $ref: "#/components/schemas/PresentationPlaybackPlan" }
+    PresentationPlaybackPlan:
+      type: object
+      required: [playbackPlanId, timelineId, presentationTimelineHash, presentationCatalogHash, firstSourceEventSeq, lastSourceEventSeq, steps]
+      properties:
+        playbackPlanId: { type: string }
+        timelineId: { type: string }
+        presentationTimelineHash: { type: string }
+        presentationCatalogHash: { type: string }
+        firstSourceEventSeq: { type: [integer, "null"], format: int64 }
+        lastSourceEventSeq: { type: [integer, "null"], format: int64 }
+        steps: { type: array, items: { $ref: "#/components/schemas/PresentationPlaybackStep" } }
+    PresentationPlaybackStep:
+      type: object
+      required: [stepId, stepKind, timelineEntryId, sourceEventSeq, cueType, sourceCardId, sourceCardVersionId, assetManifestId, assetRef, playbackPolicy, fallbackPolicy, visibilityPolicy, reason]
+      properties:
+        stepId: { type: string }
+        stepKind: { type: string, enum: [PlayAsset, Silence, Skip] }
+        timelineEntryId: { type: string }
+        sourceEventSeq: { type: integer, format: int64 }
+        cueType: { $ref: "#/components/schemas/AudioCueType" }
+        sourceCardId: { type: [string, "null"] }
+        sourceCardVersionId: { type: [string, "null"] }
+        assetManifestId: { type: [string, "null"] }
+        assetRef: { type: [string, "null"] }
+        playbackPolicy: { $ref: "#/components/schemas/PlaybackPolicy" }
+        fallbackPolicy: { $ref: "#/components/schemas/AssetFallbackPolicy" }
+        visibilityPolicy: { type: string }
+        reason: { type: string }
+    PresentationPlaybackRuntimeRequest:
+      type: object
+      required: [playbackPlan, clientState, nowMs]
+      properties:
+        playbackPlan: { $ref: "#/components/schemas/PresentationPlaybackPlan" }
+        clientState: { $ref: "#/components/schemas/PresentationPlaybackRuntimeState" }
+        nowMs: { type: integer }
+    PresentationPlaybackRuntimeState:
+      type: object
+      required: [playedStepIds, activeInstanceCounts]
+      properties:
+        playedStepIds: { type: array, uniqueItems: true, items: { type: string } }
+        activeInstanceCounts:
+          type: object
+          additionalProperties: { type: integer }
+    PresentationPlaybackRuntimeResult:
+      type: object
+      required: [instructions, nextState]
+      properties:
+        instructions: { type: array, items: { $ref: "#/components/schemas/PresentationPlaybackInstruction" } }
+        nextState: { $ref: "#/components/schemas/PresentationPlaybackRuntimeState" }
+    PresentationPlaybackInstruction:
+      type: object
+      required: [stepId, instructionKind, timelineEntryId, sourceEventSeq, cueType, assetRef, priority, clientMaySkip, reason]
+      properties:
+        stepId: { type: string }
+        instructionKind: { type: string, enum: [PlayAsset, Silence, Skip] }
+        timelineEntryId: { type: string }
+        sourceEventSeq: { type: integer, format: int64 }
+        cueType: { $ref: "#/components/schemas/AudioCueType" }
+        assetRef: { type: [string, "null"] }
+        priority: { type: integer }
+        clientMaySkip: { type: boolean }
+        reason: { type: string }
+    MatchEvidenceArtifact:
+      type: object
+      required: [artifactRef, matchId, artifactKind, contentHash, createdAt]
+      properties:
+        artifactRef: { type: string }
+        matchId: { type: string }
+        artifactKind: { type: string }
+        contentHash: { type: string }
+        createdAt: { type: string, format: date-time }

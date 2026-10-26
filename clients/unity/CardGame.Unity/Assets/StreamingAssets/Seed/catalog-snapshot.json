@@ -1,0 +1,2211 @@
+{
+    "snapshotId":  "catalog-unity-test-card-pack-v1",
+    "rulesetProfileId":  "ruleset-production-core-v1",
+    "rulesetProfileHash":  "resolved-unity-test-card-pack-hero-powers-v3",
+    "createdAt":  "2026-08-09T13:04:53.1871052+00:00",
+    "cards":  [
+                  {
+                      "cardId":  "unity_test_nixara_quickflame_deal_damage_01",
+                      "cardVersionId":  "unity_test_nixara_quickflame_deal_damage_01_v1",
+                      "schemaVersion":  "card-dsl-0.2.0",
+                      "engineVersion":  "engine-bootstrap-0.3.0",
+                      "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                      "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                      "rulesetProfileId":  "ruleset-production-core-v1",
+                      "rulesetProfileHash":  "resolved-unity-test-card-pack-hero-powers-v3",
+                      "publishedAt":  "2026-08-09T13:04:53.1871052+00:00",
+                      "definition":  {
+                                         "cardId":  "unity_test_nixara_quickflame_deal_damage_01",
+                                         "cardVersion":  "unity_test_nixara_quickflame_deal_damage_01_v1",
+                                         "schemaVersion":  "card-dsl-0.2.0",
+                                         "engineVersion":  "engine-bootstrap-0.3.0",
+                                         "primitiveRegistryVersion":  "primitive-registry-bootstrap-0.2.0",
+                                         "rulesetProfileId":  "ruleset-production-core-v1",
+                                         "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                                         "staticData":  {
+                                                            "name":  "Nixara Quickflame",
+                                                            "cardType":  "MINION_CARD",
+                                                            "classTags":  [
+                                                                              "mage"
+                                                                          ],
+                                                            "rarity":  "COMMON",
+                                                            "manaCost":  2,
+                                                            "tribes":  [
+
+                                                                       ],
+                                                            "keywords":  [
+                                                                             "BATTLECRY"
+                                                                         ],
+                                                            "collectible":  true,
+                                                            "formatTags":  [
+                                                                               "standard"
+                                                                           ]
+                                                        },
+                                         "entity":  {
+                                                        "minion":  {
+                                                                       "attack":  2,
+                                                                       "health":  2,
+                                                                       "tribes":  [
+
+                                                                                  ],
+                                                                       "baseKeywords":  [
+
+                                                                                        ],
+                                                                       "canAttack":  true
+                                                                   },
+                                                        "spell":  null,
+                                                        "weapon":  null,
+                                                        "location":  null,
+                                                        "heroCard":  null,
+                                                        "heroPower":  null
+                                                    },
+                                         "effects":  [
+                                                         {
+                                                             "effectId":  "nixara_quickflame_battlecry",
+                                                             "effectKind":  "SIMPLE_PLAY_EFFECT",
+                                                             "sourceZones":  [
+                                                                                 "HAND"
+                                                                             ],
+                                                             "trigger":  {
+                                                                             "eventType":  "CARD_PLAYED",
+                                                                             "eventFilter":  null,
+                                                                             "controllerScope":  "SOURCE_CONTROLLER",
+                                                                             "oncePerEvent":  false
+                                                                         },
+                                                             "timingPolicy":  {
+                                                                                  "phase":  "ON_PLAY",
+                                                                                  "window":  null,
+                                                                                  "priority":  0,
+                                                                                  "orderingPolicy":  "CARD_TEXT_ORDER"
+                                                                              },
+                                                             "conditions":  [
+
+                                                                            ],
+                                                             "targetRequirement":  {
+                                                                                       "required":  true,
+                                                                                       "selectionMode":  "PLAYER_CHOSEN",
+                                                                                       "candidates":  {
+                                                                                                          "controller":  "ANY",
+                                                                                                          "zones":  [
+                                                                                                                        "BOARD"
+                                                                                                                    ],
+                                                                                                          "entityTypes":  [
+                                                                                                                              "MINION"
+                                                                                                                          ],
+                                                                                                          "requiredTags":  [
+
+                                                                                                                           ],
+                                                                                                          "excludedTags":  [
+
+                                                                                                                           ],
+                                                                                                          "aliveOnly":  true
+                                                                                                      },
+                                                                                       "count":  {
+                                                                                                     "min":  1,
+                                                                                                     "max":  1
+                                                                                                 },
+                                                                                       "retargetPolicy":  "FIZZLE"
+                                                                                   },
+                                                             "actions":  [
+                                                                             {
+                                                                                 "actionType":  "DEAL_DAMAGE",
+                                                                                 "amount":  {
+                                                                                                "kind":  "FIXED",
+                                                                                                "fixedValue":  1,
+                                                                                                "ref":  null
+                                                                                            },
+                                                                                 "target":  {
+                                                                                                "ref":  "targetRequirement"
+                                                                                            },
+                                                                                 "damageSchool":  null,
+                                                                                 "lifesteal":  false,
+                                                                                 "preventable":  true,
+                                                                                 "actionId":  "deal_one_damage"
+                                                                             }
+                                                                         ],
+                                                             "resolutionPolicy":  {
+                                                                                      "kind":  "SOURCE_ORDER"
+                                                                                  },
+                                                             "fizzlePolicy":  {
+                                                                                  "kind":  "FIZZLE_WHOLE_EFFECT"
+                                                                              },
+                                                             "replayPolicy":  {
+                                                                                  "logActionResults":  true,
+                                                                                  "requiresRngLog":  false
+                                                                              },
+                                                             "tags":  [
+
+                                                                      ]
+                                                         }
+                                                     ],
+                                         "cardText":  {
+                                                          "rulesText":  "Battlecry: Deal 1 damage to a minion.",
+                                                          "flavorText":  null
+                                                      },
+                                         "balanceMetadata":  {
+                                                                 "complexityScore":  2,
+                                                                 "randomnessScore":  0,
+                                                                 "riskFlags":  [
+
+                                                                               ]
+                                                             },
+                                         "assetMetadata":  {
+                                                               "assetManifestId":  "openai-image:sha256:bebc6e9a02726750750f685eaf019135b95c9b4b4461fa3f7e1cbc75ec3af1f2",
+                                                               "visualAssetRef":  "CardArt/unity_test_nixara_quickflame_deal_damage_01",
+                                                               "audioManifestId":  null
+                                                           },
+                                         "authoringMetadata":  {
+                                                                   "createdBy":  "unity-test-card-pack-exporter",
+                                                                   "createdAt":  "2026-08-09T13:04:53.1871052+00:00",
+                                                                   "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                                                                   "sourceRefs":  [
+                                                                                      "provider:structured:gpt-5.6",
+                                                                                      "prompt:unity-test-card-pack-v1"
+                                                                                  ]
+                                                               }
+                                     },
+                      "published":  true
+                  },
+                  {
+                      "cardId":  "unity_test_sira_market_tower_draw_card_02",
+                      "cardVersionId":  "unity_test_sira_market_tower_draw_card_02_v1",
+                      "schemaVersion":  "card-dsl-0.2.0",
+                      "engineVersion":  "engine-bootstrap-0.3.0",
+                      "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                      "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                      "rulesetProfileId":  "ruleset-production-core-v1",
+                      "rulesetProfileHash":  "resolved-unity-test-card-pack-hero-powers-v3",
+                      "publishedAt":  "2026-08-09T13:04:53.1871052+00:00",
+                      "definition":  {
+                                         "cardId":  "unity_test_sira_market_tower_draw_card_02",
+                                         "cardVersion":  "unity_test_sira_market_tower_draw_card_02_v1",
+                                         "schemaVersion":  "card-dsl-0.2.0",
+                                         "engineVersion":  "engine-bootstrap-0.3.0",
+                                         "primitiveRegistryVersion":  "primitive-registry-bootstrap-0.2.0",
+                                         "rulesetProfileId":  "ruleset-production-core-v1",
+                                         "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                                         "staticData":  {
+                                                            "name":  "Sira Market Tower",
+                                                            "cardType":  "SPELL_CARD",
+                                                            "classTags":  [
+                                                                              "mage"
+                                                                          ],
+                                                            "rarity":  "RARE",
+                                                            "manaCost":  5,
+                                                            "tribes":  [
+
+                                                                       ],
+                                                            "keywords":  [
+
+                                                                         ],
+                                                            "collectible":  true,
+                                                            "formatTags":  [
+                                                                               "standard"
+                                                                           ]
+                                                        },
+                                         "entity":  {
+                                                        "minion":  null,
+                                                        "spell":  {
+                                                                      "spellSchool":  null,
+                                                                      "requiresTarget":  true
+                                                                  },
+                                                        "weapon":  null,
+                                                        "location":  null,
+                                                        "heroCard":  null,
+                                                        "heroPower":  null
+                                                    },
+                                         "effects":  [
+                                                         {
+                                                             "effectId":  "heal_direction",
+                                                             "effectKind":  "SIMPLE_PLAY_EFFECT",
+                                                             "sourceZones":  [
+                                                                                 "HAND"
+                                                                             ],
+                                                             "trigger":  {
+                                                                             "eventType":  "CARD_PLAYED",
+                                                                             "eventFilter":  null,
+                                                                             "controllerScope":  "SOURCE_CONTROLLER",
+                                                                             "oncePerEvent":  false
+                                                                         },
+                                                             "timingPolicy":  {
+                                                                                  "phase":  "ON_PLAY",
+                                                                                  "window":  null,
+                                                                                  "priority":  0,
+                                                                                  "orderingPolicy":  "CARD_TEXT_ORDER"
+                                                                              },
+                                                             "conditions":  [
+
+                                                                            ],
+                                                             "targetRequirement":  {
+                                                                                       "required":  true,
+                                                                                       "selectionMode":  "PLAYER_CHOSEN",
+                                                                                       "candidates":  {
+                                                                                                          "controller":  "SELF",
+                                                                                                          "zones":  [
+                                                                                                                        "BOARD"
+                                                                                                                    ],
+                                                                                                          "entityTypes":  [
+                                                                                                                              "MINION"
+                                                                                                                          ],
+                                                                                                          "requiredTags":  [
+
+                                                                                                                           ],
+                                                                                                          "excludedTags":  [
+
+                                                                                                                           ],
+                                                                                                          "aliveOnly":  true
+                                                                                                      },
+                                                                                       "count":  {
+                                                                                                     "min":  1,
+                                                                                                     "max":  1
+                                                                                                 },
+                                                                                       "retargetPolicy":  "FIZZLE"
+                                                                                   },
+                                                             "actions":  [
+                                                                             {
+                                                                                 "actionType":  "HEAL",
+                                                                                 "amount":  {
+                                                                                                "kind":  "FIXED",
+                                                                                                "fixedValue":  3,
+                                                                                                "ref":  null
+                                                                                            },
+                                                                                 "target":  {
+                                                                                                "ref":  "targetRequirement"
+                                                                                            },
+                                                                                 "actionId":  "heal_friendly_minion"
+                                                                             },
+                                                                             {
+                                                                                 "actionType":  "DRAW_CARD",
+                                                                                 "player":  "SELF",
+                                                                                 "count":  {
+                                                                                               "kind":  "FIXED",
+                                                                                               "fixedValue":  1,
+                                                                                               "ref":  null
+                                                                                           },
+                                                                                 "deckEmptyPolicy":  "FATIGUE",
+                                                                                 "resultRef":  "drawn_card",
+                                                                                 "actionId":  "draw_after_heal"
+                                                                             }
+                                                                         ],
+                                                             "resolutionPolicy":  {
+                                                                                      "kind":  "SOURCE_ORDER"
+                                                                                  },
+                                                             "fizzlePolicy":  {
+                                                                                  "kind":  "FIZZLE_WHOLE_EFFECT"
+                                                                              },
+                                                             "replayPolicy":  {
+                                                                                  "logActionResults":  true,
+                                                                                  "requiresRngLog":  false
+                                                                              },
+                                                             "tags":  [
+
+                                                                      ]
+                                                         }
+                                                     ],
+                                         "cardText":  {
+                                                          "rulesText":  "Restore 3 Health to a friendly minion. Draw a card.",
+                                                          "flavorText":  null
+                                                      },
+                                         "balanceMetadata":  {
+                                                                 "complexityScore":  3,
+                                                                 "randomnessScore":  0,
+                                                                 "riskFlags":  [
+
+                                                                               ]
+                                                             },
+                                         "assetMetadata":  {
+                                                               "assetManifestId":  "openai-image:sha256:e08ecee9092cfa7b062cd42f1f4ebf985396c193f21fc38d08aabf89492a23b4",
+                                                               "visualAssetRef":  "CardArt/unity_test_sira_market_tower_draw_card_02",
+                                                               "audioManifestId":  null
+                                                           },
+                                         "authoringMetadata":  {
+                                                                   "createdBy":  "unity-test-card-pack-exporter",
+                                                                   "createdAt":  "2026-08-09T13:04:53.1871052+00:00",
+                                                                   "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                                                                   "sourceRefs":  [
+                                                                                      "provider:structured:gpt-5.6",
+                                                                                      "prompt:unity-test-card-pack-v1"
+                                                                                  ]
+                                                               }
+                                     },
+                      "published":  true
+                  },
+                  {
+                      "cardId":  "unity_test_fulgurite_cascade_damage_distribution_03",
+                      "cardVersionId":  "unity_test_fulgurite_cascade_damage_distribution_03_v1",
+                      "schemaVersion":  "card-dsl-0.2.0",
+                      "engineVersion":  "engine-bootstrap-0.3.0",
+                      "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                      "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                      "rulesetProfileId":  "ruleset-production-core-v1",
+                      "rulesetProfileHash":  "resolved-unity-test-card-pack-hero-powers-v3",
+                      "publishedAt":  "2026-08-09T13:04:53.1871052+00:00",
+                      "definition":  {
+                                         "cardId":  "unity_test_fulgurite_cascade_damage_distribution_03",
+                                         "cardVersion":  "unity_test_fulgurite_cascade_damage_distribution_03_v1",
+                                         "schemaVersion":  "card-dsl-0.2.0",
+                                         "engineVersion":  "engine-bootstrap-0.3.0",
+                                         "primitiveRegistryVersion":  "primitive-registry-bootstrap-0.2.0",
+                                         "rulesetProfileId":  "ruleset-production-core-v1",
+                                         "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                                         "staticData":  {
+                                                            "name":  "Fulgurite Cascade",
+                                                            "cardType":  "SPELL_CARD",
+                                                            "classTags":  [
+                                                                              "mage"
+                                                                          ],
+                                                            "rarity":  "EPIC",
+                                                            "manaCost":  6,
+                                                            "tribes":  [
+
+                                                                       ],
+                                                            "keywords":  [
+
+                                                                         ],
+                                                            "collectible":  true,
+                                                            "formatTags":  [
+                                                                               "standard"
+                                                                           ]
+                                                        },
+                                         "entity":  {
+                                                        "minion":  null,
+                                                        "spell":  {
+                                                                      "spellSchool":  null,
+                                                                      "requiresTarget":  false
+                                                                  },
+                                                        "weapon":  null,
+                                                        "location":  null,
+                                                        "heroCard":  null,
+                                                        "heroPower":  null
+                                                    },
+                                         "effects":  [
+                                                         {
+                                                             "effectId":  "fulgurite_cascade_damage",
+                                                             "effectKind":  "SIMPLE_PLAY_EFFECT",
+                                                             "sourceZones":  [
+                                                                                 "HAND"
+                                                                             ],
+                                                             "trigger":  {
+                                                                             "eventType":  "CARD_PLAYED",
+                                                                             "eventFilter":  null,
+                                                                             "controllerScope":  "SOURCE_CONTROLLER",
+                                                                             "oncePerEvent":  false
+                                                                         },
+                                                             "timingPolicy":  {
+                                                                                  "phase":  "ON_PLAY",
+                                                                                  "window":  null,
+                                                                                  "priority":  0,
+                                                                                  "orderingPolicy":  "CARD_TEXT_ORDER"
+                                                                              },
+                                                             "conditions":  [
+
+                                                                            ],
+                                                             "targetRequirement":  null,
+                                                             "actions":  [
+                                                                             {
+                                                                                 "actionType":  "DAMAGE_DISTRIBUTION",
+                                                                                 "totalAmount":  {
+                                                                                                     "kind":  "FIXED",
+                                                                                                     "fixedValue":  8,
+                                                                                                     "ref":  null
+                                                                                                 },
+                                                                                 "candidateTargets":  {
+                                                                                                          "controller":  "OPPONENT",
+                                                                                                          "zones":  [
+                                                                                                                        "BOARD"
+                                                                                                                    ],
+                                                                                                          "entityTypes":  [
+                                                                                                                              "MINION"
+                                                                                                                          ],
+                                                                                                          "requiredTags":  [
+
+                                                                                                                           ],
+                                                                                                          "excludedTags":  [
+
+                                                                                                                           ],
+                                                                                                          "aliveOnly":  true
+                                                                                                      },
+                                                                                 "distributionMode":  "RANDOM_SPLIT",
+                                                                                 "perTargetInstancePolicy":  "SEPARATE_DAMAGE_INSTANCES",
+                                                                                 "lifestealAggregationPolicy":  "NO_LIFESTEAL",
+                                                                                 "overkillPolicy":  "ALLOW_OVERKILL",
+                                                                                 "fizzleIfNoTargets":  true,
+                                                                                 "rngPolicy":  "RANDOM_TARGET",
+                                                                                 "actionId":  "cascade_random_damage"
+                                                                             }
+                                                                         ],
+                                                             "resolutionPolicy":  {
+                                                                                      "kind":  "SOURCE_ORDER"
+                                                                                  },
+                                                             "fizzlePolicy":  {
+                                                                                  "kind":  "FIZZLE_WHOLE_EFFECT"
+                                                                              },
+                                                             "replayPolicy":  {
+                                                                                  "logActionResults":  true,
+                                                                                  "requiresRngLog":  true
+                                                                              },
+                                                             "tags":  [
+
+                                                                      ]
+                                                         }
+                                                     ],
+                                         "cardText":  {
+                                                          "rulesText":  "Randomly split 8 damage among enemy minions.",
+                                                          "flavorText":  null
+                                                      },
+                                         "balanceMetadata":  {
+                                                                 "complexityScore":  3,
+                                                                 "randomnessScore":  3,
+                                                                 "riskFlags":  [
+
+                                                                               ]
+                                                             },
+                                         "assetMetadata":  {
+                                                               "assetManifestId":  "openai-image:sha256:1c7ef82b151c40b180ec6f747515da46ffe6091ca31ae16d00cc522c1e85ae8e",
+                                                               "visualAssetRef":  "CardArt/unity_test_fulgurite_cascade_damage_distribution_03",
+                                                               "audioManifestId":  null
+                                                           },
+                                         "authoringMetadata":  {
+                                                                   "createdBy":  "unity-test-card-pack-exporter",
+                                                                   "createdAt":  "2026-08-09T13:04:53.1871052+00:00",
+                                                                   "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                                                                   "sourceRefs":  [
+                                                                                      "provider:structured:gpt-5.6",
+                                                                                      "prompt:unity-test-card-pack-v1"
+                                                                                  ]
+                                                               }
+                                     },
+                      "published":  true
+                  },
+                  {
+                      "cardId":  "unity_test_juxia_intervenes_prevent_damage_04",
+                      "cardVersionId":  "unity_test_juxia_intervenes_prevent_damage_04_v1",
+                      "schemaVersion":  "card-dsl-0.2.0",
+                      "engineVersion":  "engine-bootstrap-0.3.0",
+                      "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                      "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                      "rulesetProfileId":  "ruleset-production-core-v1",
+                      "rulesetProfileHash":  "resolved-unity-test-card-pack-hero-powers-v3",
+                      "publishedAt":  "2026-08-09T13:04:53.1871052+00:00",
+                      "definition":  {
+                                         "cardId":  "unity_test_juxia_intervenes_prevent_damage_04",
+                                         "cardVersion":  "unity_test_juxia_intervenes_prevent_damage_04_v1",
+                                         "schemaVersion":  "card-dsl-0.2.0",
+                                         "engineVersion":  "engine-bootstrap-0.3.0",
+                                         "primitiveRegistryVersion":  "primitive-registry-bootstrap-0.2.0",
+                                         "rulesetProfileId":  "ruleset-production-core-v1",
+                                         "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                                         "staticData":  {
+                                                            "name":  "Juxia Intervenes",
+                                                            "cardType":  "SPELL_CARD",
+                                                            "classTags":  [
+                                                                              "mage"
+                                                                          ],
+                                                            "rarity":  "RARE",
+                                                            "manaCost":  3,
+                                                            "tribes":  [
+
+                                                                       ],
+                                                            "keywords":  [
+
+                                                                         ],
+                                                            "collectible":  true,
+                                                            "formatTags":  [
+                                                                               "standard"
+                                                                           ]
+                                                        },
+                                         "entity":  {
+                                                        "minion":  null,
+                                                        "spell":  {
+                                                                      "spellSchool":  null,
+                                                                      "requiresTarget":  true
+                                                                  },
+                                                        "weapon":  null,
+                                                        "location":  null,
+                                                        "heroCard":  null,
+                                                        "heroPower":  null
+                                                    },
+                                         "effects":  [
+                                                         {
+                                                             "effectId":  "juxia_intervenes_play",
+                                                             "effectKind":  "SIMPLE_PLAY_EFFECT",
+                                                             "sourceZones":  [
+                                                                                 "HAND"
+                                                                             ],
+                                                             "trigger":  {
+                                                                             "eventType":  "CARD_PLAYED",
+                                                                             "eventFilter":  null,
+                                                                             "controllerScope":  "SOURCE_CONTROLLER",
+                                                                             "oncePerEvent":  false
+                                                                         },
+                                                             "timingPolicy":  {
+                                                                                  "phase":  "ON_PLAY",
+                                                                                  "window":  null,
+                                                                                  "priority":  0,
+                                                                                  "orderingPolicy":  "CARD_TEXT_ORDER"
+                                                                              },
+                                                             "conditions":  [
+
+                                                                            ],
+                                                             "targetRequirement":  {
+                                                                                       "required":  true,
+                                                                                       "selectionMode":  "PLAYER_CHOSEN",
+                                                                                       "candidates":  {
+                                                                                                          "controller":  "SELF",
+                                                                                                          "zones":  [
+                                                                                                                        "BOARD"
+                                                                                                                    ],
+                                                                                                          "entityTypes":  [
+                                                                                                                              "MINION"
+                                                                                                                          ],
+                                                                                                          "requiredTags":  [
+
+                                                                                                                           ],
+                                                                                                          "excludedTags":  [
+
+                                                                                                                           ],
+                                                                                                          "aliveOnly":  true
+                                                                                                      },
+                                                                                       "count":  {
+                                                                                                     "min":  1,
+                                                                                                     "max":  1
+                                                                                                 },
+                                                                                       "retargetPolicy":  "FIZZLE"
+                                                                                   },
+                                                             "actions":  [
+                                                                             {
+                                                                                 "actionType":  "PREVENT_DAMAGE",
+                                                                                 "target":  {
+                                                                                                "ref":  "targetRequirement"
+                                                                                            },
+                                                                                 "amount":  {
+                                                                                                "kind":  "FIXED",
+                                                                                                "fixedValue":  2,
+                                                                                                "ref":  null
+                                                                                            },
+                                                                                 "duration":  "NEXT_DAMAGE",
+                                                                                                "preventionPolicy":  "PREVENT_UP_TO_AMOUNT",
+                                                                                 "resultRef":  "prevent_result",
+                                                                                 "actionId":  "prevent_next_damage"
+                                                                             }
+                                                                         ],
+                                                             "resolutionPolicy":  {
+                                                                                      "kind":  "SOURCE_ORDER"
+                                                                                  },
+                                                             "fizzlePolicy":  {
+                                                                                  "kind":  "FIZZLE_WHOLE_EFFECT"
+                                                                              },
+                                                             "replayPolicy":  {
+                                                                                  "logActionResults":  true,
+                                                                                  "requiresRngLog":  false
+                                                                              },
+                                                             "tags":  [
+
+                                                                      ]
+                                                         }
+                                                     ],
+                                         "cardText":  {
+                                                          "rulesText":  "Prevent the next 2 damage dealt to a friendly minion.",
+                                                          "flavorText":  null
+                                                      },
+                                         "balanceMetadata":  {
+                                                                 "complexityScore":  2,
+                                                                 "randomnessScore":  0,
+                                                                 "riskFlags":  [
+
+                                                                               ]
+                                                             },
+                                         "assetMetadata":  {
+                                                               "assetManifestId":  "openai-image:sha256:705dcd38f981f318b97dd7a4ca8d1b713f6387e95b5e1868779678dbfab0df43",
+                                                               "visualAssetRef":  "CardArt/unity_test_juxia_intervenes_prevent_damage_04",
+                                                               "audioManifestId":  null
+                                                           },
+                                         "authoringMetadata":  {
+                                                                   "createdBy":  "unity-test-card-pack-exporter",
+                                                                   "createdAt":  "2026-08-09T13:04:53.1871052+00:00",
+                                                                   "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                                                                   "sourceRefs":  [
+                                                                                      "provider:structured:gpt-5.6",
+                                                                                      "prompt:unity-test-card-pack-v1"
+                                                                                  ]
+                                                               }
+                                     },
+                      "published":  true
+                  },
+                  {
+                      "cardId":  "unity_test_vexara_apply_aura_05",
+                      "cardVersionId":  "unity_test_vexara_apply_aura_05_v1",
+                      "schemaVersion":  "card-dsl-0.2.0",
+                      "engineVersion":  "engine-bootstrap-0.3.0",
+                      "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                      "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                      "rulesetProfileId":  "ruleset-production-core-v1",
+                      "rulesetProfileHash":  "resolved-unity-test-card-pack-hero-powers-v3",
+                      "publishedAt":  "2026-08-09T13:04:53.1871052+00:00",
+                      "definition":  {
+                                         "cardId":  "unity_test_vexara_apply_aura_05",
+                                         "cardVersion":  "unity_test_vexara_apply_aura_05_v1",
+                                         "schemaVersion":  "card-dsl-0.2.0",
+                                         "engineVersion":  "engine-bootstrap-0.3.0",
+                                         "primitiveRegistryVersion":  "primitive-registry-bootstrap-0.2.0",
+                                         "rulesetProfileId":  "ruleset-production-core-v1",
+                                         "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                                         "staticData":  {
+                                                            "name":  "Vexara",
+                                                            "cardType":  "MINION_CARD",
+                                                            "classTags":  [
+                                                                              "mage"
+                                                                          ],
+                                                            "rarity":  "EPIC",
+                                                            "manaCost":  4,
+                                                            "tribes":  [
+
+                                                                       ],
+                                                            "keywords":  [
+                                                                             "BATTLECRY"
+                                                                         ],
+                                                            "collectible":  true,
+                                                            "formatTags":  [
+                                                                               "standard"
+                                                                           ]
+                                                        },
+                                         "entity":  {
+                                                        "minion":  {
+                                                                       "attack":  2,
+                                                                       "health":  4,
+                                                                       "tribes":  [
+
+                                                                                  ],
+                                                                       "baseKeywords":  [
+
+                                                                                        ],
+                                                                       "canAttack":  true
+                                                                   },
+                                                        "spell":  null,
+                                                        "weapon":  null,
+                                                        "location":  null,
+                                                        "heroCard":  null,
+                                                        "heroPower":  null
+                                                    },
+                                         "effects":  [
+                                                         {
+                                                             "effectId":  "vexara_resurrection",
+                                                             "effectKind":  "SIMPLE_PLAY_EFFECT",
+                                                             "sourceZones":  [
+                                                                                 "HAND"
+                                                                             ],
+                                                             "trigger":  {
+                                                                             "eventType":  "CARD_PLAYED",
+                                                                             "eventFilter":  null,
+                                                                             "controllerScope":  "SOURCE_CONTROLLER",
+                                                                             "oncePerEvent":  false
+                                                                         },
+                                                             "timingPolicy":  {
+                                                                                  "phase":  "ON_PLAY",
+                                                                                  "window":  null,
+                                                                                  "priority":  0,
+                                                                                  "orderingPolicy":  "CARD_TEXT_ORDER"
+                                                                              },
+                                                             "conditions":  [
+
+                                                                            ],
+                                                             "targetRequirement":  null,
+                                                             "actions":  [
+                                                                             {
+                                                                                 "actionType":  "RESURRECT",
+                                                                                 "target":  {
+                                                                                                "ref":  "ownGraveyardMinion"
+                                                                                            },
+                                                                                 "controller":  "SELF",
+                                                                                 "attack":  {
+                                                                                                "kind":  "FIXED",
+                                                                                                "fixedValue":  2,
+                                                                                                "ref":  null
+                                                                                            },
+                                                                                 "health":  {
+                                                                                                "kind":  "FIXED",
+                                                                                                "fixedValue":  2,
+                                                                                                "ref":  null
+                                                                                            },
+                                                                                 "placementPolicy":  "RIGHTMOST",
+                                                                                 "boardFullPolicy":  "SKIP_ACTION",
+                                                                                 "resultRef":  "resurrected_minion",
+                                                                                 "historyQuery":  {
+                                                                                                      "kind":  "OWN_GRAVEYARD_MINION",
+                                                                                                      "player":  "SELF",
+                                                                                                      "ordering":  "LAST",
+                                                                                                      "maxCandidates":  1
+                                                                                                  },
+                                                                                 "actionId":  "resurrect_last_friendly_minion"
+                                                                             }
+                                                                         ],
+                                                             "resolutionPolicy":  {
+                                                                                      "kind":  "SOURCE_ORDER"
+                                                                                  },
+                                                             "fizzlePolicy":  {
+                                                                                  "kind":  "FIZZLE_WHOLE_EFFECT"
+                                                                              },
+                                                             "replayPolicy":  {
+                                                                                  "logActionResults":  true,
+                                                                                  "requiresRngLog":  false
+                                                                              },
+                                                             "tags":  [
+
+                                                                      ]
+                                                         },
+                                                         {
+                                                             "effectId":  "vexara_attack_aura",
+                                                             "effectKind":  "AURA_EFFECT",
+                                                             "sourceZones":  [
+                                                                                 "BOARD"
+                                                                             ],
+                                                             "trigger":  {
+                                                                             "eventType":  "CARD_PLAYED",
+                                                                             "eventFilter":  null,
+                                                                             "controllerScope":  "SOURCE_CONTROLLER",
+                                                                             "oncePerEvent":  false
+                                                                         },
+                                                             "timingPolicy":  {
+                                                                                  "phase":  "AURA_REFRESH",
+                                                                                  "window":  null,
+                                                                                  "priority":  0,
+                                                                                  "orderingPolicy":  "CARD_TEXT_ORDER"
+                                                                              },
+                                                             "conditions":  [
+
+                                                                            ],
+                                                             "targetRequirement":  null,
+                                                             "actions":  [
+                                                                             {
+                                                                                 "actionType":  "APPLY_AURA",
+                                                                                 "controller":  "SELF",
+                                                                                 "aura":  {
+                                                                                              "auraId":  "vexara_friendly_attack_aura",
+                                                                                              "auraType":  "CONTINUOUS_MODIFIER",
+                                                                                              "affectedEntities":  {
+                                                                                                                       "controller":  "SELF",
+                                                                                                                       "zones":  [
+                                                                                                                                     "BOARD"
+                                                                                                                                 ],
+                                                                                                                       "entityTypes":  [
+                                                                                                                                           "MINION"
+                                                                                                                                       ],
+                                                                                                                       "requiredTags":  [
+
+                                                                                                                                        ],
+                                                                                                                       "excludedTags":  [
+
+                                                                                                                                        ],
+                                                                                                                       "aliveOnly":  true
+                                                                                                                   },
+                                                                                              "modifier":  {
+                                                                                                               "modifierId":  "vexara_attack_modifier",
+                                                                                                               "modifierType":  "BOARD_ATTACK_MODIFIER",
+                                                                                                               "value":  {
+                                                                                                                             "kind":  "FIXED",
+                                                                                                                             "fixedValue":  1,
+                                                                                                                             "ref":  null
+                                                                                                                         },
+                                                                                                               "duration":  "WHILE_SOURCE_ACTIVE",
+                                                                                                               "priority":  0
+                                                                                                           },
+                                                                                              "duration":  "WHILE_SOURCE_ACTIVE",
+                                                                                              "priority":  0
+                                                                                          },
+                                                                                 "actionId":  "apply_vexara_attack_aura"
+                                                                             }
+                                                                         ],
+                                                             "resolutionPolicy":  {
+                                                                                      "kind":  "SOURCE_ORDER"
+                                                                                  },
+                                                             "fizzlePolicy":  {
+                                                                                  "kind":  "FIZZLE_WHOLE_EFFECT"
+                                                                              },
+                                                             "replayPolicy":  {
+                                                                                  "logActionResults":  true,
+                                                                                  "requiresRngLog":  false
+                                                                              },
+                                                             "tags":  [
+
+                                                                      ]
+                                                         }
+                                                     ],
+                                         "cardText":  {
+                                                          "rulesText":  "Battlecry: Resurrect a 2/2 friendly minion. Other friendly minions have +1 Attack.",
+                                                          "flavorText":  null
+                                                      },
+                                         "balanceMetadata":  {
+                                                                 "complexityScore":  4,
+                                                                 "randomnessScore":  0,
+                                                                 "riskFlags":  [
+
+                                                                               ]
+                                                             },
+                                         "assetMetadata":  {
+                                                               "assetManifestId":  "openai-image:sha256:6e0a9f605c118d5c357988f39e32673985143685c735b025a824a2a83587dd89",
+                                                               "visualAssetRef":  "CardArt/unity_test_vexara_apply_aura_05",
+                                                               "audioManifestId":  null
+                                                           },
+                                         "authoringMetadata":  {
+                                                                   "createdBy":  "unity-test-card-pack-exporter",
+                                                                   "createdAt":  "2026-08-09T13:04:53.1871052+00:00",
+                                                                   "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                                                                   "sourceRefs":  [
+                                                                                      "provider:structured:gpt-5.6",
+                                                                                      "prompt:unity-test-card-pack-v1"
+                                                                                  ]
+                                                               }
+                                     },
+                      "published":  true
+                  },
+                  {
+                      "cardId":  "unity_test_jexara_returns_deal_damage_06",
+                      "cardVersionId":  "unity_test_jexara_returns_deal_damage_06_v1",
+                      "schemaVersion":  "card-dsl-0.2.0",
+                      "engineVersion":  "engine-bootstrap-0.3.0",
+                      "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                      "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                      "rulesetProfileId":  "ruleset-production-core-v1",
+                      "rulesetProfileHash":  "resolved-unity-test-card-pack-hero-powers-v3",
+                      "publishedAt":  "2026-08-09T13:04:53.1871052+00:00",
+                      "definition":  {
+                                         "cardId":  "unity_test_jexara_returns_deal_damage_06",
+                                         "cardVersion":  "unity_test_jexara_returns_deal_damage_06_v1",
+                                         "schemaVersion":  "card-dsl-0.2.0",
+                                         "engineVersion":  "engine-bootstrap-0.3.0",
+                                         "primitiveRegistryVersion":  "primitive-registry-bootstrap-0.2.0",
+                                         "rulesetProfileId":  "ruleset-production-core-v1",
+                                         "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                                         "staticData":  {
+                                                            "name":  "Jexara Returns",
+                                                            "cardType":  "SPELL_CARD",
+                                                            "classTags":  [
+                                                                              "mage"
+                                                                          ],
+                                                            "rarity":  "EPIC",
+                                                            "manaCost":  2,
+                                                            "tribes":  [
+
+                                                                       ],
+                                                            "keywords":  [
+
+                                                                         ],
+                                                            "collectible":  true,
+                                                            "formatTags":  [
+                                                                               "standard"
+                                                                           ]
+                                                        },
+                                         "entity":  {
+                                                        "minion":  null,
+                                                        "spell":  {
+                                                                      "spellSchool":  null,
+                                                                      "requiresTarget":  true
+                                                                  },
+                                                        "weapon":  null,
+                                                        "location":  null,
+                                                        "heroCard":  null,
+                                                        "heroPower":  null
+                                                    },
+                                         "effects":  [
+                                                         {
+                                                             "effectId":  "jexara_returns_on_play",
+                                                             "effectKind":  "SIMPLE_PLAY_EFFECT",
+                                                             "sourceZones":  [
+                                                                                 "HAND"
+                                                                             ],
+                                                             "trigger":  {
+                                                                             "eventType":  "CARD_PLAYED",
+                                                                             "eventFilter":  null,
+                                                                             "controllerScope":  "SOURCE_CONTROLLER",
+                                                                             "oncePerEvent":  false
+                                                                         },
+                                                             "timingPolicy":  {
+                                                                                  "phase":  "ON_PLAY",
+                                                                                  "window":  null,
+                                                                                  "priority":  0,
+                                                                                  "orderingPolicy":  "CARD_TEXT_ORDER"
+                                                                              },
+                                                             "conditions":  [
+
+                                                                            ],
+                                                             "targetRequirement":  {
+                                                                                       "required":  true,
+                                                                                       "selectionMode":  "PLAYER_CHOSEN",
+                                                                                       "candidates":  {
+                                                                                                          "controller":  "ANY",
+                                                                                                          "zones":  [
+                                                                                                                        "BOARD"
+                                                                                                                    ],
+                                                                                                          "entityTypes":  [
+                                                                                                                              "MINION"
+                                                                                                                          ],
+                                                                                                          "requiredTags":  [
+
+                                                                                                                           ],
+                                                                                                          "excludedTags":  [
+
+                                                                                                                           ],
+                                                                                                          "aliveOnly":  true
+                                                                                                      },
+                                                                                       "count":  {
+                                                                                                     "min":  1,
+                                                                                                     "max":  1
+                                                                                                 },
+                                                                                       "retargetPolicy":  "FIZZLE"
+                                                                                   },
+                                                             "actions":  [
+                                                                             {
+                                                                                 "actionType":  "RESURRECT",
+                                                                                 "target":  {
+                                                                                                "ref":  "ownGraveyardMinion"
+                                                                                            },
+                                                                                 "controller":  "SELF",
+                                                                                 "attack":  {
+                                                                                                "kind":  "FIXED",
+                                                                                                "fixedValue":  2,
+                                                                                                "ref":  null
+                                                                                            },
+                                                                                 "health":  {
+                                                                                                "kind":  "FIXED",
+                                                                                                "fixedValue":  2,
+                                                                                                "ref":  null
+                                                                                            },
+                                                                                 "placementPolicy":  "RIGHTMOST",
+                                                                                 "boardFullPolicy":  "SKIP_ACTION",
+                                                                                 "resultRef":  "resurrected_minion",
+                                                                                 "historyQuery":  {
+                                                                                                      "kind":  "OWN_GRAVEYARD_MINION",
+                                                                                                      "player":  "SELF",
+                                                                                                      "ordering":  "LAST",
+                                                                                                      "maxCandidates":  1
+                                                                                                  },
+                                                                                 "actionId":  "resurrect_last_friendly_minion"
+                                                                             },
+                                                                             {
+                                                                                 "actionType":  "DEAL_DAMAGE",
+                                                                                 "amount":  {
+                                                                                                "kind":  "FIXED",
+                                                                                                "fixedValue":  1,
+                                                                                                "ref":  null
+                                                                                            },
+                                                                                 "target":  {
+                                                                                                "ref":  "targetRequirement"
+                                                                                            },
+                                                                                 "damageSchool":  null,
+                                                                                 "lifesteal":  false,
+                                                                                 "preventable":  true,
+                                                                                 "actionId":  "deal_one_damage"
+                                                                             }
+                                                                         ],
+                                                             "resolutionPolicy":  {
+                                                                                      "kind":  "SOURCE_ORDER"
+                                                                                  },
+                                                             "fizzlePolicy":  {
+                                                                                  "kind":  "FIZZLE_WHOLE_EFFECT"
+                                                                              },
+                                                             "replayPolicy":  {
+                                                                                  "logActionResults":  true,
+                                                                                  "requiresRngLog":  false
+                                                                              },
+                                                             "tags":  [
+
+                                                                      ]
+                                                         }
+                                                     ],
+                                         "cardText":  {
+                                                          "rulesText":  "Resurrect a 2/2 friendly minion. Deal 1 damage to a minion.",
+                                                          "flavorText":  null
+                                                      },
+                                         "balanceMetadata":  {
+                                                                 "complexityScore":  3,
+                                                                 "randomnessScore":  0,
+                                                                 "riskFlags":  [
+
+                                                                               ]
+                                                             },
+                                         "assetMetadata":  {
+                                                               "assetManifestId":  "openai-image:sha256:d0e7f40672db3ff92bc45c52a17aac67db23bfb5fcece587f880689fdffca512",
+                                                               "visualAssetRef":  "CardArt/unity_test_jexara_returns_deal_damage_06",
+                                                               "audioManifestId":  null
+                                                           },
+                                         "authoringMetadata":  {
+                                                                   "createdBy":  "unity-test-card-pack-exporter",
+                                                                   "createdAt":  "2026-08-09T13:04:53.1871052+00:00",
+                                                                   "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                                                                   "sourceRefs":  [
+                                                                                      "provider:structured:gpt-5.6",
+                                                                                      "prompt:unity-test-card-pack-v1"
+                                                                                  ]
+                                                               }
+                                     },
+                      "published":  true
+                  },
+                  {
+                      "cardId":  "unity_test_veyra_cinderglass_draw_card_07",
+                      "cardVersionId":  "unity_test_veyra_cinderglass_draw_card_07_v1",
+                      "schemaVersion":  "card-dsl-0.2.0",
+                      "engineVersion":  "engine-bootstrap-0.3.0",
+                      "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                      "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                      "rulesetProfileId":  "ruleset-production-core-v1",
+                      "rulesetProfileHash":  "resolved-unity-test-card-pack-hero-powers-v3",
+                      "publishedAt":  "2026-08-09T13:04:53.1871052+00:00",
+                      "definition":  {
+                                         "cardId":  "unity_test_veyra_cinderglass_draw_card_07",
+                                         "cardVersion":  "unity_test_veyra_cinderglass_draw_card_07_v1",
+                                         "schemaVersion":  "card-dsl-0.2.0",
+                                         "engineVersion":  "engine-bootstrap-0.3.0",
+                                         "primitiveRegistryVersion":  "primitive-registry-bootstrap-0.2.0",
+                                         "rulesetProfileId":  "ruleset-production-core-v1",
+                                         "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                                         "staticData":  {
+                                                            "name":  "Veyra Cinderglass",
+                                                            "cardType":  "MINION_CARD",
+                                                            "classTags":  [
+                                                                              "mage"
+                                                                          ],
+                                                            "rarity":  "COMMON",
+                                                            "manaCost":  3,
+                                                            "tribes":  [
+
+                                                                       ],
+                                                            "keywords":  [
+                                                                             "DEATHRATTLE"
+                                                                         ],
+                                                            "collectible":  true,
+                                                            "formatTags":  [
+                                                                               "standard"
+                                                                           ]
+                                                        },
+                                         "entity":  {
+                                                        "minion":  {
+                                                                       "attack":  3,
+                                                                       "health":  3,
+                                                                       "tribes":  [
+
+                                                                                  ],
+                                                                       "baseKeywords":  [
+
+                                                                                        ],
+                                                                       "canAttack":  true
+                                                                   },
+                                                        "spell":  null,
+                                                        "weapon":  null,
+                                                        "location":  null,
+                                                        "heroCard":  null,
+                                                        "heroPower":  null
+                                                    },
+                                         "effects":  [
+                                                         {
+                                                             "effectId":  "veyra_cinderglass_deathrattle_draw",
+                                                             "effectKind":  "DEATHRATTLE_EFFECT",
+                                                             "sourceZones":  [
+                                                                                 "BOARD"
+                                                                             ],
+                                                             "trigger":  {
+                                                                             "eventType":  "ENTITY_DIED",
+                                                                             "eventFilter":  null,
+                                                                             "controllerScope":  "SOURCE_CONTROLLER",
+                                                                             "oncePerEvent":  false
+                                                                         },
+                                                             "timingPolicy":  {
+                                                                                  "phase":  "DEATHRATTLE_PHASE",
+                                                                                  "window":  null,
+                                                                                  "priority":  0,
+                                                                                  "orderingPolicy":  "CARD_TEXT_ORDER"
+                                                                              },
+                                                             "conditions":  [
+
+                                                                            ],
+                                                             "targetRequirement":  null,
+                                                             "actions":  [
+                                                                             {
+                                                                                 "actionType":  "DRAW_CARD",
+                                                                                 "player":  "SELF",
+                                                                                 "count":  {
+                                                                                               "kind":  "FIXED",
+                                                                                               "fixedValue":  1,
+                                                                                               "ref":  null
+                                                                                           },
+                                                                                 "deckEmptyPolicy":  "FATIGUE",
+                                                                                 "resultRef":  "drawn_card",
+                                                                                 "actionId":  "draw_one_card"
+                                                                             }
+                                                                         ],
+                                                             "resolutionPolicy":  {
+                                                                                      "kind":  "SOURCE_ORDER"
+                                                                                  },
+                                                             "fizzlePolicy":  {
+                                                                                  "kind":  "FIZZLE_WHOLE_EFFECT"
+                                                                              },
+                                                             "replayPolicy":  {
+                                                                                  "logActionResults":  true,
+                                                                                  "requiresRngLog":  false
+                                                                              },
+                                                             "tags":  [
+
+                                                                      ]
+                                                         }
+                                                     ],
+                                         "cardText":  {
+                                                          "rulesText":  "Deathrattle: Draw a card.",
+                                                          "flavorText":  null
+                                                      },
+                                         "balanceMetadata":  {
+                                                                 "complexityScore":  1,
+                                                                 "randomnessScore":  0,
+                                                                 "riskFlags":  [
+
+                                                                               ]
+                                                             },
+                                         "assetMetadata":  {
+                                                               "assetManifestId":  "openai-image:sha256:925a39f08e731929005b37effd80b1f42508533f81183281ddc9eca401a01bdd",
+                                                               "visualAssetRef":  "CardArt/unity_test_veyra_cinderglass_draw_card_07",
+                                                               "audioManifestId":  null
+                                                           },
+                                         "authoringMetadata":  {
+                                                                   "createdBy":  "unity-test-card-pack-exporter",
+                                                                   "createdAt":  "2026-08-09T13:04:53.1871052+00:00",
+                                                                   "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                                                                   "sourceRefs":  [
+                                                                                      "provider:structured:gpt-5.6",
+                                                                                      "prompt:unity-test-card-pack-v1"
+                                                                                  ]
+                                                               }
+                                     },
+                      "published":  true
+                  },
+                  {
+                      "cardId":  "unity_test_jadayra_draw_card_08",
+                      "cardVersionId":  "unity_test_jadayra_draw_card_08_v1",
+                      "schemaVersion":  "card-dsl-0.2.0",
+                      "engineVersion":  "engine-bootstrap-0.3.0",
+                      "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                      "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                      "rulesetProfileId":  "ruleset-production-core-v1",
+                      "rulesetProfileHash":  "resolved-unity-test-card-pack-hero-powers-v3",
+                      "publishedAt":  "2026-08-09T13:04:53.1871052+00:00",
+                      "definition":  {
+                                         "cardId":  "unity_test_jadayra_draw_card_08",
+                                         "cardVersion":  "unity_test_jadayra_draw_card_08_v1",
+                                         "schemaVersion":  "card-dsl-0.2.0",
+                                         "engineVersion":  "engine-bootstrap-0.3.0",
+                                         "primitiveRegistryVersion":  "primitive-registry-bootstrap-0.2.0",
+                                         "rulesetProfileId":  "ruleset-production-core-v1",
+                                         "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                                         "staticData":  {
+                                                            "name":  "Jadayra",
+                                                            "cardType":  "LOCATION_CARD",
+                                                            "classTags":  [
+                                                                              "mage"
+                                                                          ],
+                                                            "rarity":  "RARE",
+                                                            "manaCost":  2,
+                                                            "tribes":  [
+
+                                                                       ],
+                                                            "keywords":  [
+
+                                                                         ],
+                                                            "collectible":  true,
+                                                            "formatTags":  [
+                                                                               "standard"
+                                                                           ]
+                                                        },
+                                         "entity":  {
+                                                        "minion":  null,
+                                                        "spell":  null,
+                                                        "weapon":  null,
+                                                        "location":  {
+                                                                         "durability":  2,
+                                                                         "cooldownPolicy":  "ONCE_PER_TURN",
+                                                                         "activationLimit":  "DURABILITY"
+                                                                     },
+                                                        "heroCard":  null,
+                                                        "heroPower":  null
+                                                    },
+                                         "effects":  [
+                                                         {
+                                                             "effectId":  "jadayra_draw_ability",
+                                                             "effectKind":  "LOCATION_ABILITY_EFFECT",
+                                                             "sourceZones":  [
+                                                                                 "BOARD"
+                                                                             ],
+                                                             "trigger":  {
+                                                                             "eventType":  "CARD_PLAYED",
+                                                                             "eventFilter":  null,
+                                                                             "controllerScope":  "SOURCE_CONTROLLER",
+                                                                             "oncePerEvent":  false
+                                                                         },
+                                                             "timingPolicy":  {
+                                                                                  "phase":  "ON_PLAY",
+                                                                                  "window":  null,
+                                                                                  "priority":  0,
+                                                                                  "orderingPolicy":  "CARD_TEXT_ORDER"
+                                                                              },
+                                                             "conditions":  [
+
+                                                                            ],
+                                                             "targetRequirement":  null,
+                                                             "actions":  [
+                                                                             {
+                                                                                 "actionType":  "DRAW_CARD",
+                                                                                 "player":  "SELF",
+                                                                                 "count":  {
+                                                                                               "kind":  "FIXED",
+                                                                                               "fixedValue":  1,
+                                                                                               "ref":  null
+                                                                                           },
+                                                                                 "deckEmptyPolicy":  "FATIGUE",
+                                                                                 "resultRef":  "drawn_card",
+                                                                                 "actionId":  "draw_one_card"
+                                                                             }
+                                                                         ],
+                                                             "resolutionPolicy":  {
+                                                                                      "kind":  "SOURCE_ORDER"
+                                                                                  },
+                                                             "fizzlePolicy":  {
+                                                                                  "kind":  "FIZZLE_WHOLE_EFFECT"
+                                                                              },
+                                                             "replayPolicy":  {
+                                                                                  "logActionResults":  true,
+                                                                                  "requiresRngLog":  false
+                                                                              },
+                                                             "tags":  [
+
+                                                                      ]
+                                                         }
+                                                     ],
+                                         "cardText":  {
+                                                          "rulesText":  "Activate: Draw a card.",
+                                                          "flavorText":  null
+                                                      },
+                                         "balanceMetadata":  {
+                                                                 "complexityScore":  2,
+                                                                 "randomnessScore":  0,
+                                                                 "riskFlags":  [
+
+                                                                               ]
+                                                             },
+                                         "assetMetadata":  {
+                                                               "assetManifestId":  "openai-image:sha256:c7673957f77691b1dd27faf658454ae03e0d1267d98af47518786ecca3867607",
+                                                               "visualAssetRef":  "CardArt/unity_test_jadayra_draw_card_08",
+                                                               "audioManifestId":  null
+                                                           },
+                                         "authoringMetadata":  {
+                                                                   "createdBy":  "unity-test-card-pack-exporter",
+                                                                   "createdAt":  "2026-08-09T13:04:53.1871052+00:00",
+                                                                   "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                                                                   "sourceRefs":  [
+                                                                                      "provider:structured:gpt-5.6",
+                                                                                      "prompt:unity-test-card-pack-v1"
+                                                                                  ]
+                                                               }
+                                     },
+                      "published":  true
+                  },
+                  {
+                      "cardId":  "unity_test_vaelbrand_vanilla_09",
+                      "cardVersionId":  "unity_test_vaelbrand_vanilla_09_v1",
+                      "schemaVersion":  "card-dsl-0.2.0",
+                      "engineVersion":  "engine-bootstrap-0.3.0",
+                      "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                      "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                      "rulesetProfileId":  "ruleset-production-core-v1",
+                      "rulesetProfileHash":  "resolved-unity-test-card-pack-hero-powers-v3",
+                      "publishedAt":  "2026-08-09T13:04:53.1871052+00:00",
+                      "definition":  {
+                                         "cardId":  "unity_test_vaelbrand_vanilla_09",
+                                         "cardVersion":  "unity_test_vaelbrand_vanilla_09_v1",
+                                         "schemaVersion":  "card-dsl-0.2.0",
+                                         "engineVersion":  "engine-bootstrap-0.3.0",
+                                         "primitiveRegistryVersion":  "primitive-registry-bootstrap-0.2.0",
+                                         "rulesetProfileId":  "ruleset-production-core-v1",
+                                         "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                                         "staticData":  {
+                                                            "name":  "Vaelbrand",
+                                                            "cardType":  "WEAPON_CARD",
+                                                            "classTags":  [
+                                                                              "mage"
+                                                                          ],
+                                                            "rarity":  "RARE",
+                                                            "manaCost":  6,
+                                                            "tribes":  [
+
+                                                                       ],
+                                                            "keywords":  [
+
+                                                                         ],
+                                                            "collectible":  true,
+                                                            "formatTags":  [
+                                                                               "standard"
+                                                                           ]
+                                                        },
+                                         "entity":  {
+                                                        "minion":  null,
+                                                        "spell":  null,
+                                                        "weapon":  {
+                                                                       "attack":  5,
+                                                                       "durability":  3,
+                                                                       "baseKeywords":  [
+
+                                                                                        ]
+                                                                   },
+                                                        "location":  null,
+                                                        "heroCard":  null,
+                                                        "heroPower":  null
+                                                    },
+                                         "effects":  [
+
+                                                     ],
+                                         "cardText":  {
+                                                          "rulesText":  "",
+                                                          "flavorText":  null
+                                                      },
+                                         "balanceMetadata":  {
+                                                                 "complexityScore":  1,
+                                                                 "randomnessScore":  0,
+                                                                 "riskFlags":  [
+
+                                                                               ]
+                                                             },
+                                         "assetMetadata":  {
+                                                               "assetManifestId":  "openai-image:sha256:2c717d4ea1e5be0dc737130c50be2c73f0427b7a36940c6d6ed4835c21308d8c",
+                                                               "visualAssetRef":  "CardArt/unity_test_vaelbrand_vanilla_09",
+                                                               "audioManifestId":  null
+                                                           },
+                                         "authoringMetadata":  {
+                                                                   "createdBy":  "unity-test-card-pack-exporter",
+                                                                   "createdAt":  "2026-08-09T13:04:53.1871052+00:00",
+                                                                   "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                                                                   "sourceRefs":  [
+                                                                                      "provider:structured:gpt-5.6",
+                                                                                      "prompt:unity-test-card-pack-v1"
+                                                                                  ]
+                                                               }
+                                     },
+                      "published":  true
+                  },
+                  {
+                      "cardId":  "unity_test_fenna_alley_chirurgeon_draw_card_10",
+                      "cardVersionId":  "unity_test_fenna_alley_chirurgeon_draw_card_10_v1",
+                      "schemaVersion":  "card-dsl-0.2.0",
+                      "engineVersion":  "engine-bootstrap-0.3.0",
+                      "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                      "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                      "rulesetProfileId":  "ruleset-production-core-v1",
+                      "rulesetProfileHash":  "resolved-unity-test-card-pack-hero-powers-v3",
+                      "publishedAt":  "2026-08-09T13:04:53.1871052+00:00",
+                      "definition":  {
+                                         "cardId":  "unity_test_fenna_alley_chirurgeon_draw_card_10",
+                                         "cardVersion":  "unity_test_fenna_alley_chirurgeon_draw_card_10_v1",
+                                         "schemaVersion":  "card-dsl-0.2.0",
+                                         "engineVersion":  "engine-bootstrap-0.3.0",
+                                         "primitiveRegistryVersion":  "primitive-registry-bootstrap-0.2.0",
+                                         "rulesetProfileId":  "ruleset-production-core-v1",
+                                         "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                                         "staticData":  {
+                                                            "name":  "Fenna, Alley Chirurgeon",
+                                                            "cardType":  "MINION_CARD",
+                                                            "classTags":  [
+                                                                              "mage"
+                                                                          ],
+                                                            "rarity":  "RARE",
+                                                            "manaCost":  2,
+                                                            "tribes":  [
+
+                                                                       ],
+                                                            "keywords":  [
+                                                                             "BATTLECRY"
+                                                                         ],
+                                                            "collectible":  true,
+                                                            "formatTags":  [
+                                                                               "standard"
+                                                                           ]
+                                                        },
+                                         "entity":  {
+                                                        "minion":  {
+                                                                       "attack":  1,
+                                                                       "health":  2,
+                                                                       "tribes":  [
+
+                                                                                  ],
+                                                                       "baseKeywords":  [
+
+                                                                                        ],
+                                                                       "canAttack":  true
+                                                                   },
+                                                        "spell":  null,
+                                                        "weapon":  null,
+                                                        "location":  null,
+                                                        "heroCard":  null,
+                                                        "heroPower":  null
+                                                    },
+                                         "effects":  [
+                                                         {
+                                                             "effectId":  "fenna_draw_and_mend",
+                                                             "effectKind":  "SIMPLE_PLAY_EFFECT",
+                                                             "sourceZones":  [
+                                                                                 "HAND"
+                                                                             ],
+                                                             "trigger":  {
+                                                                             "eventType":  "CARD_PLAYED",
+                                                                             "eventFilter":  null,
+                                                                             "controllerScope":  "SOURCE_CONTROLLER",
+                                                                             "oncePerEvent":  false
+                                                                         },
+                                                             "timingPolicy":  {
+                                                                                  "phase":  "ON_PLAY",
+                                                                                  "window":  null,
+                                                                                  "priority":  0,
+                                                                                  "orderingPolicy":  "CARD_TEXT_ORDER"
+                                                                              },
+                                                             "conditions":  [
+
+                                                                            ],
+                                                             "targetRequirement":  {
+                                                                                       "required":  true,
+                                                                                       "selectionMode":  "PLAYER_CHOSEN",
+                                                                                       "candidates":  {
+                                                                                                          "controller":  "SELF",
+                                                                                                          "zones":  [
+                                                                                                                        "BOARD"
+                                                                                                                    ],
+                                                                                                          "entityTypes":  [
+                                                                                                                              "MINION"
+                                                                                                                          ],
+                                                                                                          "requiredTags":  [
+
+                                                                                                                           ],
+                                                                                                          "excludedTags":  [
+
+                                                                                                                           ],
+                                                                                                          "aliveOnly":  true
+                                                                                                      },
+                                                                                       "count":  {
+                                                                                                     "min":  1,
+                                                                                                     "max":  1
+                                                                                                 },
+                                                                                       "retargetPolicy":  "FIZZLE"
+                                                                                   },
+                                                             "actions":  [
+                                                                             {
+                                                                                 "actionType":  "DRAW_CARD",
+                                                                                 "player":  "SELF",
+                                                                                 "count":  {
+                                                                                               "kind":  "FIXED",
+                                                                                               "fixedValue":  1,
+                                                                                               "ref":  null
+                                                                                           },
+                                                                                 "deckEmptyPolicy":  "FATIGUE",
+                                                                                 "resultRef":  "drawn_card",
+                                                                                 "actionId":  "fenna_draw_card"
+                                                                             },
+                                                                             {
+                                                                                 "actionType":  "HEAL",
+                                                                                 "amount":  {
+                                                                                                "kind":  "FIXED",
+                                                                                                "fixedValue":  2,
+                                                                                                "ref":  null
+                                                                                            },
+                                                                                 "target":  {
+                                                                                                "ref":  "targetRequirement"
+                                                                                            },
+                                                                                 "actionId":  "fenna_restore_health"
+                                                                             }
+                                                                         ],
+                                                             "resolutionPolicy":  {
+                                                                                      "kind":  "SOURCE_ORDER"
+                                                                                  },
+                                                             "fizzlePolicy":  {
+                                                                                  "kind":  "FIZZLE_WHOLE_EFFECT"
+                                                                              },
+                                                             "replayPolicy":  {
+                                                                                  "logActionResults":  true,
+                                                                                  "requiresRngLog":  false
+                                                                              },
+                                                             "tags":  [
+
+                                                                      ]
+                                                         }
+                                                     ],
+                                         "cardText":  {
+                                                          "rulesText":  "Battlecry: Draw a card. Restore 2 Health to a friendly minion.",
+                                                          "flavorText":  null
+                                                      },
+                                         "balanceMetadata":  {
+                                                                 "complexityScore":  2,
+                                                                 "randomnessScore":  0,
+                                                                 "riskFlags":  [
+
+                                                                               ]
+                                                             },
+                                         "assetMetadata":  {
+                                                               "assetManifestId":  "openai-image:sha256:be1b0b2c331080a6595abd4df45a2e3cb83cf18deb2f557afa2d24152cc7bbe5",
+                                                               "visualAssetRef":  "CardArt/unity_test_fenna_alley_chirurgeon_draw_card_10",
+                                                               "audioManifestId":  null
+                                                           },
+                                         "authoringMetadata":  {
+                                                                   "createdBy":  "unity-test-card-pack-exporter",
+                                                                   "createdAt":  "2026-08-09T13:04:53.1871052+00:00",
+                                                                   "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                                                                   "sourceRefs":  [
+                                                                                      "provider:structured:gpt-5.6",
+                                                                                      "prompt:unity-test-card-pack-v1"
+                                                                                  ]
+                                                               }
+                                     },
+                      "published":  true
+                  },
+                  {
+                      "cardId":  "unity_test_peregrine_vanilla_11",
+                      "cardVersionId":  "unity_test_peregrine_vanilla_11_v1",
+                      "schemaVersion":  "card-dsl-0.2.0",
+                      "engineVersion":  "engine-bootstrap-0.3.0",
+                      "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                      "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                      "rulesetProfileId":  "ruleset-production-core-v1",
+                      "rulesetProfileHash":  "resolved-unity-test-card-pack-hero-powers-v3",
+                      "publishedAt":  "2026-08-09T13:04:53.1871052+00:00",
+                      "definition":  {
+                                         "cardId":  "unity_test_peregrine_vanilla_11",
+                                         "cardVersion":  "unity_test_peregrine_vanilla_11_v1",
+                                         "schemaVersion":  "card-dsl-0.2.0",
+                                         "engineVersion":  "engine-bootstrap-0.3.0",
+                                         "primitiveRegistryVersion":  "primitive-registry-bootstrap-0.2.0",
+                                         "rulesetProfileId":  "ruleset-production-core-v1",
+                                         "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                                         "staticData":  {
+                                                            "name":  "Peregrine",
+                                                            "cardType":  "WEAPON_CARD",
+                                                            "classTags":  [
+                                                                              "mage"
+                                                                          ],
+                                                            "rarity":  "COMMON",
+                                                            "manaCost":  3,
+                                                            "tribes":  [
+
+                                                                       ],
+                                                            "keywords":  [
+
+                                                                         ],
+                                                            "collectible":  true,
+                                                            "formatTags":  [
+                                                                               "standard"
+                                                                           ]
+                                                        },
+                                         "entity":  {
+                                                        "minion":  null,
+                                                        "spell":  null,
+                                                        "weapon":  {
+                                                                       "attack":  3,
+                                                                       "durability":  2,
+                                                                       "baseKeywords":  [
+
+                                                                                        ]
+                                                                   },
+                                                        "location":  null,
+                                                        "heroCard":  null,
+                                                        "heroPower":  null
+                                                    },
+                                         "effects":  [
+
+                                                     ],
+                                         "cardText":  {
+                                                          "rulesText":  "",
+                                                          "flavorText":  null
+                                                      },
+                                         "balanceMetadata":  {
+                                                                 "complexityScore":  1,
+                                                                 "randomnessScore":  0,
+                                                                 "riskFlags":  [
+
+                                                                               ]
+                                                             },
+                                         "assetMetadata":  {
+                                                               "assetManifestId":  "openai-image:sha256:08b6c01bd9f46b347da6d7d5b801d90c455b4dc12fcc477c5c5ceb02fc2cb18b",
+                                                               "visualAssetRef":  "CardArt/unity_test_peregrine_vanilla_11",
+                                                               "audioManifestId":  null
+                                                           },
+                                         "authoringMetadata":  {
+                                                                   "createdBy":  "unity-test-card-pack-exporter",
+                                                                   "createdAt":  "2026-08-09T13:04:53.1871052+00:00",
+                                                                   "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                                                                   "sourceRefs":  [
+                                                                                      "provider:structured:gpt-5.6",
+                                                                                      "prompt:unity-test-card-pack-v1"
+                                                                                  ]
+                                                               }
+                                     },
+                      "published":  true
+                  },
+                  {
+                      "cardId":  "unity_test_pazca_rooftop_astrologer_draw_card_12",
+                      "cardVersionId":  "unity_test_pazca_rooftop_astrologer_draw_card_12_v1",
+                      "schemaVersion":  "card-dsl-0.2.0",
+                      "engineVersion":  "engine-bootstrap-0.3.0",
+                      "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                      "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                      "rulesetProfileId":  "ruleset-production-core-v1",
+                      "rulesetProfileHash":  "resolved-unity-test-card-pack-hero-powers-v3",
+                      "publishedAt":  "2026-08-09T13:04:53.1871052+00:00",
+                      "definition":  {
+                                         "cardId":  "unity_test_pazca_rooftop_astrologer_draw_card_12",
+                                         "cardVersion":  "unity_test_pazca_rooftop_astrologer_draw_card_12_v1",
+                                         "schemaVersion":  "card-dsl-0.2.0",
+                                         "engineVersion":  "engine-bootstrap-0.3.0",
+                                         "primitiveRegistryVersion":  "primitive-registry-bootstrap-0.2.0",
+                                         "rulesetProfileId":  "ruleset-production-core-v1",
+                                         "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                                         "staticData":  {
+                                                            "name":  "Pazca, Rooftop Astrologer",
+                                                            "cardType":  "MINION_CARD",
+                                                            "classTags":  [
+                                                                              "mage"
+                                                                          ],
+                                                            "rarity":  "COMMON",
+                                                            "manaCost":  3,
+                                                            "tribes":  [
+
+                                                                       ],
+                                                            "keywords":  [
+                                                                             "DEATHRATTLE"
+                                                                         ],
+                                                            "collectible":  true,
+                                                            "formatTags":  [
+                                                                               "standard"
+                                                                           ]
+                                                        },
+                                         "entity":  {
+                                                        "minion":  {
+                                                                       "attack":  3,
+                                                                       "health":  3,
+                                                                       "tribes":  [
+
+                                                                                  ],
+                                                                       "baseKeywords":  [
+
+                                                                                        ],
+                                                                       "canAttack":  true
+                                                                   },
+                                                        "spell":  null,
+                                                        "weapon":  null,
+                                                        "location":  null,
+                                                        "heroCard":  null,
+                                                        "heroPower":  null
+                                                    },
+                                         "effects":  [
+                                                         {
+                                                             "effectId":  "pazca_deathrattle_draw",
+                                                             "effectKind":  "DEATHRATTLE_EFFECT",
+                                                             "sourceZones":  [
+                                                                                 "BOARD"
+                                                                             ],
+                                                             "trigger":  {
+                                                                             "eventType":  "ENTITY_DIED",
+                                                                             "eventFilter":  null,
+                                                                             "controllerScope":  "SOURCE_CONTROLLER",
+                                                                             "oncePerEvent":  false
+                                                                         },
+                                                             "timingPolicy":  {
+                                                                                  "phase":  "DEATHRATTLE_PHASE",
+                                                                                  "window":  null,
+                                                                                  "priority":  0,
+                                                                                  "orderingPolicy":  "CARD_TEXT_ORDER"
+                                                                              },
+                                                             "conditions":  [
+
+                                                                            ],
+                                                             "targetRequirement":  null,
+                                                             "actions":  [
+                                                                             {
+                                                                                 "actionType":  "DRAW_CARD",
+                                                                                 "player":  "SELF",
+                                                                                 "count":  {
+                                                                                               "kind":  "FIXED",
+                                                                                               "fixedValue":  1,
+                                                                                               "ref":  null
+                                                                                           },
+                                                                                 "deckEmptyPolicy":  "FATIGUE",
+                                                                                 "resultRef":  "drawn_card",
+                                                                                 "actionId":  "draw_one_card"
+                                                                             }
+                                                                         ],
+                                                             "resolutionPolicy":  {
+                                                                                      "kind":  "SOURCE_ORDER"
+                                                                                  },
+                                                             "fizzlePolicy":  {
+                                                                                  "kind":  "FIZZLE_WHOLE_EFFECT"
+                                                                              },
+                                                             "replayPolicy":  {
+                                                                                  "logActionResults":  true,
+                                                                                  "requiresRngLog":  false
+                                                                              },
+                                                             "tags":  [
+
+                                                                      ]
+                                                         }
+                                                     ],
+                                         "cardText":  {
+                                                          "rulesText":  "Deathrattle: Draw a card.",
+                                                          "flavorText":  null
+                                                      },
+                                         "balanceMetadata":  {
+                                                                 "complexityScore":  1,
+                                                                 "randomnessScore":  0,
+                                                                 "riskFlags":  [
+
+                                                                               ]
+                                                             },
+                                         "assetMetadata":  {
+                                                               "assetManifestId":  "openai-image:sha256:9598d3ba3ea52139477dcd7567d919dd2129349228ffd1ca37507c3fd52cadb0",
+                                                               "visualAssetRef":  "CardArt/unity_test_pazca_rooftop_astrologer_draw_card_12",
+                                                               "audioManifestId":  null
+                                                           },
+                                         "authoringMetadata":  {
+                                                                   "createdBy":  "unity-test-card-pack-exporter",
+                                                                   "createdAt":  "2026-08-09T13:04:53.1871052+00:00",
+                                                                   "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                                                                   "sourceRefs":  [
+                                                                                      "provider:structured:gpt-5.6",
+                                                                                      "prompt:unity-test-card-pack-v1"
+                                                                                  ]
+                                                               }
+                                     },
+                      "published":  true
+                  },
+                  {
+                      "cardId":  "unity_test_ceraxa_draw_card_13",
+                      "cardVersionId":  "unity_test_ceraxa_draw_card_13_v1",
+                      "schemaVersion":  "card-dsl-0.2.0",
+                      "engineVersion":  "engine-bootstrap-0.3.0",
+                      "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                      "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                      "rulesetProfileId":  "ruleset-production-core-v1",
+                      "rulesetProfileHash":  "resolved-unity-test-card-pack-hero-powers-v3",
+                      "publishedAt":  "2026-08-09T13:04:53.1871052+00:00",
+                      "definition":  {
+                                         "cardId":  "unity_test_ceraxa_draw_card_13",
+                                         "cardVersion":  "unity_test_ceraxa_draw_card_13_v1",
+                                         "schemaVersion":  "card-dsl-0.2.0",
+                                         "engineVersion":  "engine-bootstrap-0.3.0",
+                                         "primitiveRegistryVersion":  "primitive-registry-bootstrap-0.2.0",
+                                         "rulesetProfileId":  "ruleset-production-core-v1",
+                                         "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                                         "staticData":  {
+                                                            "name":  "Ceraxa",
+                                                            "cardType":  "MINION_CARD",
+                                                            "classTags":  [
+                                                                              "mage"
+                                                                          ],
+                                                            "rarity":  "RARE",
+                                                            "manaCost":  6,
+                                                            "tribes":  [
+
+                                                                       ],
+                                                            "keywords":  [
+                                                                             "DEATHRATTLE"
+                                                                         ],
+                                                            "collectible":  true,
+                                                            "formatTags":  [
+                                                                               "standard"
+                                                                           ]
+                                                        },
+                                         "entity":  {
+                                                        "minion":  {
+                                                                       "attack":  5,
+                                                                       "health":  5,
+                                                                       "tribes":  [
+
+                                                                                  ],
+                                                                       "baseKeywords":  [
+
+                                                                                        ],
+                                                                       "canAttack":  true
+                                                                   },
+                                                        "spell":  null,
+                                                        "weapon":  null,
+                                                        "location":  null,
+                                                        "heroCard":  null,
+                                                        "heroPower":  null
+                                                    },
+                                         "effects":  [
+                                                         {
+                                                             "effectId":  "ceraxa_deathrattle_draw",
+                                                             "effectKind":  "DEATHRATTLE_EFFECT",
+                                                             "sourceZones":  [
+                                                                                 "BOARD"
+                                                                             ],
+                                                             "trigger":  {
+                                                                             "eventType":  "ENTITY_DIED",
+                                                                             "eventFilter":  null,
+                                                                             "controllerScope":  "SOURCE_CONTROLLER",
+                                                                             "oncePerEvent":  false
+                                                                         },
+                                                             "timingPolicy":  {
+                                                                                  "phase":  "DEATHRATTLE_PHASE",
+                                                                                  "window":  null,
+                                                                                  "priority":  0,
+                                                                                  "orderingPolicy":  "CARD_TEXT_ORDER"
+                                                                              },
+                                                             "conditions":  [
+
+                                                                            ],
+                                                             "targetRequirement":  null,
+                                                             "actions":  [
+                                                                             {
+                                                                                 "actionType":  "DRAW_CARD",
+                                                                                 "player":  "SELF",
+                                                                                 "count":  {
+                                                                                               "kind":  "FIXED",
+                                                                                               "fixedValue":  1,
+                                                                                               "ref":  null
+                                                                                           },
+                                                                                 "deckEmptyPolicy":  "FATIGUE",
+                                                                                 "resultRef":  "drawn_card",
+                                                                                 "actionId":  "draw_one_card"
+                                                                             }
+                                                                         ],
+                                                             "resolutionPolicy":  {
+                                                                                      "kind":  "SOURCE_ORDER"
+                                                                                  },
+                                                             "fizzlePolicy":  {
+                                                                                  "kind":  "FIZZLE_WHOLE_EFFECT"
+                                                                              },
+                                                             "replayPolicy":  {
+                                                                                  "logActionResults":  true,
+                                                                                  "requiresRngLog":  false
+                                                                              },
+                                                             "tags":  [
+
+                                                                      ]
+                                                         }
+                                                     ],
+                                         "cardText":  {
+                                                          "rulesText":  "Deathrattle: Draw a card.",
+                                                          "flavorText":  null
+                                                      },
+                                         "balanceMetadata":  {
+                                                                 "complexityScore":  2,
+                                                                 "randomnessScore":  0,
+                                                                 "riskFlags":  [
+
+                                                                               ]
+                                                             },
+                                         "assetMetadata":  {
+                                                               "assetManifestId":  "openai-image:sha256:4bb73733a4a563d6800cbca36beb1c3b8dec5550c309d1b49d773345ba43c7f8",
+                                                               "visualAssetRef":  "CardArt/unity_test_ceraxa_draw_card_13",
+                                                               "audioManifestId":  null
+                                                           },
+                                         "authoringMetadata":  {
+                                                                   "createdBy":  "unity-test-card-pack-exporter",
+                                                                   "createdAt":  "2026-08-09T13:04:53.1871052+00:00",
+                                                                   "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                                                                   "sourceRefs":  [
+                                                                                      "provider:structured:gpt-5.6",
+                                                                                      "prompt:unity-test-card-pack-v1"
+                                                                                  ]
+                                                               }
+                                     },
+                      "published":  true
+                  },
+                  {
+                      "cardId":  "unity_test_cyravel_resurrect_14",
+                      "cardVersionId":  "unity_test_cyravel_resurrect_14_v1",
+                      "schemaVersion":  "card-dsl-0.2.0",
+                      "engineVersion":  "engine-bootstrap-0.3.0",
+                      "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                      "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                      "rulesetProfileId":  "ruleset-production-core-v1",
+                      "rulesetProfileHash":  "resolved-unity-test-card-pack-hero-powers-v3",
+                      "publishedAt":  "2026-08-09T13:04:53.1871052+00:00",
+                      "definition":  {
+                                         "cardId":  "unity_test_cyravel_resurrect_14",
+                                         "cardVersion":  "unity_test_cyravel_resurrect_14_v1",
+                                         "schemaVersion":  "card-dsl-0.2.0",
+                                         "engineVersion":  "engine-bootstrap-0.3.0",
+                                         "primitiveRegistryVersion":  "primitive-registry-bootstrap-0.2.0",
+                                         "rulesetProfileId":  "ruleset-production-core-v1",
+                                         "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                                         "staticData":  {
+                                                            "name":  "Cyravel",
+                                                            "cardType":  "LOCATION_CARD",
+                                                            "classTags":  [
+                                                                              "mage"
+                                                                          ],
+                                                            "rarity":  "RARE",
+                                                            "manaCost":  4,
+                                                            "tribes":  [
+
+                                                                       ],
+                                                            "keywords":  [
+
+                                                                         ],
+                                                            "collectible":  true,
+                                                            "formatTags":  [
+                                                                               "standard"
+                                                                           ]
+                                                        },
+                                         "entity":  {
+                                                        "minion":  null,
+                                                        "spell":  null,
+                                                        "weapon":  null,
+                                                        "location":  {
+                                                                         "durability":  2,
+                                                                         "cooldownPolicy":  "ONCE_PER_TURN",
+                                                                         "activationLimit":  "DURABILITY"
+                                                                     },
+                                                        "heroCard":  null,
+                                                        "heroPower":  null
+                                                    },
+                                         "effects":  [
+                                                         {
+                                                             "effectId":  "cyravel_resurrection",
+                                                             "effectKind":  "LOCATION_ABILITY_EFFECT",
+                                                             "sourceZones":  [
+                                                                                 "BOARD"
+                                                                             ],
+                                                             "trigger":  {
+                                                                             "eventType":  "CARD_PLAYED",
+                                                                             "eventFilter":  null,
+                                                                             "controllerScope":  "SOURCE_CONTROLLER",
+                                                                             "oncePerEvent":  false
+                                                                         },
+                                                             "timingPolicy":  {
+                                                                                  "phase":  "ON_PLAY",
+                                                                                  "window":  null,
+                                                                                  "priority":  0,
+                                                                                  "orderingPolicy":  "CARD_TEXT_ORDER"
+                                                                              },
+                                                             "conditions":  [
+
+                                                                            ],
+                                                             "targetRequirement":  null,
+                                                             "actions":  [
+                                                                             {
+                                                                                 "actionType":  "RESURRECT",
+                                                                                 "target":  {
+                                                                                                "ref":  "ownGraveyardMinion"
+                                                                                            },
+                                                                                 "controller":  "SELF",
+                                                                                 "attack":  {
+                                                                                                "kind":  "FIXED",
+                                                                                                "fixedValue":  2,
+                                                                                                "ref":  null
+                                                                                            },
+                                                                                 "health":  {
+                                                                                                "kind":  "FIXED",
+                                                                                                "fixedValue":  2,
+                                                                                                "ref":  null
+                                                                                            },
+                                                                                 "placementPolicy":  "RIGHTMOST",
+                                                                                 "boardFullPolicy":  "SKIP_ACTION",
+                                                                                 "resultRef":  "resurrected_minion",
+                                                                                 "historyQuery":  {
+                                                                                                      "kind":  "OWN_GRAVEYARD_MINION",
+                                                                                                      "player":  "SELF",
+                                                                                                      "ordering":  "LAST",
+                                                                                                      "maxCandidates":  1
+                                                                                                  },
+                                                                                 "actionId":  "resurrect_last_minion"
+                                                                             }
+                                                                         ],
+                                                             "resolutionPolicy":  {
+                                                                                      "kind":  "SOURCE_ORDER"
+                                                                                  },
+                                                             "fizzlePolicy":  {
+                                                                                  "kind":  "FIZZLE_WHOLE_EFFECT"
+                                                                              },
+                                                             "replayPolicy":  {
+                                                                                  "logActionResults":  true,
+                                                                                  "requiresRngLog":  false
+                                                                              },
+                                                             "tags":  [
+
+                                                                      ]
+                                                         }
+                                                     ],
+                                         "cardText":  {
+                                                          "rulesText":  "Activate: Resurrect a 2/2 friendly minion.",
+                                                          "flavorText":  null
+                                                      },
+                                         "balanceMetadata":  {
+                                                                 "complexityScore":  2,
+                                                                 "randomnessScore":  0,
+                                                                 "riskFlags":  [
+
+                                                                               ]
+                                                             },
+                                         "assetMetadata":  {
+                                                               "assetManifestId":  "openai-image:sha256:6b3866ace01764f36dc20f6b44d3cd6bf1c88ef10cefeb33c36b597dd9391728",
+                                                               "visualAssetRef":  "CardArt/unity_test_cyravel_resurrect_14",
+                                                               "audioManifestId":  null
+                                                           },
+                                         "authoringMetadata":  {
+                                                                   "createdBy":  "unity-test-card-pack-exporter",
+                                                                   "createdAt":  "2026-08-09T13:04:53.1871052+00:00",
+                                                                   "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                                                                   "sourceRefs":  [
+                                                                                      "provider:structured:gpt-5.6",
+                                                                                      "prompt:unity-test-card-pack-v1"
+                                                                                  ]
+                                                               }
+                                     },
+                      "published":  true
+                  },
+                  {
+                      "cardId":  "unity_test_cinderwake_damage_distribution_15",
+                      "cardVersionId":  "unity_test_cinderwake_damage_distribution_15_v1",
+                      "schemaVersion":  "card-dsl-0.2.0",
+                      "engineVersion":  "engine-bootstrap-0.3.0",
+                      "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                      "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                      "rulesetProfileId":  "ruleset-production-core-v1",
+                      "rulesetProfileHash":  "resolved-unity-test-card-pack-hero-powers-v3",
+                      "publishedAt":  "2026-08-09T13:04:53.1871052+00:00",
+                      "definition":  {
+                                         "cardId":  "unity_test_cinderwake_damage_distribution_15",
+                                         "cardVersion":  "unity_test_cinderwake_damage_distribution_15_v1",
+                                         "schemaVersion":  "card-dsl-0.2.0",
+                                         "engineVersion":  "engine-bootstrap-0.3.0",
+                                         "primitiveRegistryVersion":  "primitive-registry-bootstrap-0.2.0",
+                                         "rulesetProfileId":  "ruleset-production-core-v1",
+                                         "catalogSnapshotId":  "catalog-unity-test-card-pack-v1",
+                                         "staticData":  {
+                                                            "name":  "Cinderwake",
+                                                            "cardType":  "SPELL_CARD",
+                                                            "classTags":  [
+                                                                              "mage"
+                                                                          ],
+                                                            "rarity":  "RARE",
+                                                            "manaCost":  6,
+                                                            "tribes":  [
+
+                                                                       ],
+                                                            "keywords":  [
+
+                                                                         ],
+                                                            "collectible":  true,
+                                                            "formatTags":  [
+                                                                               "standard"
+                                                                           ]
+                                                        },
+                                         "entity":  {
+                                                        "minion":  null,
+                                                        "spell":  {
+                                                                      "spellSchool":  null,
+                                                                      "requiresTarget":  false
+                                                                  },
+                                                        "weapon":  null,
+                                                        "location":  null,
+                                                        "heroCard":  null,
+                                                        "heroPower":  null
+                                                    },
+                                         "effects":  [
+                                                         {
+                                                             "effectId":  "cinderwake_random_damage",
+                                                             "effectKind":  "SIMPLE_PLAY_EFFECT",
+                                                             "sourceZones":  [
+                                                                                 "HAND"
+                                                                             ],
+                                                             "trigger":  {
+                                                                             "eventType":  "CARD_PLAYED",
+                                                                             "eventFilter":  null,
+                                                                             "controllerScope":  "SOURCE_CONTROLLER",
+                                                                             "oncePerEvent":  false
+                                                                         },
+                                                             "timingPolicy":  {
+                                                                                  "phase":  "ON_PLAY",
+                                                                                  "window":  null,
+                                                                                  "priority":  0,
+                                                                                  "orderingPolicy":  "CARD_TEXT_ORDER"
+                                                                              },
+                                                             "conditions":  [
+
+                                                                            ],
+                                                             "targetRequirement":  null,
+                                                             "actions":  [
+                                                                             {
+                                                                                 "actionType":  "DAMAGE_DISTRIBUTION",
+                                                                                 "totalAmount":  {
+                                                                                                     "kind":  "FIXED",
+                                                                                                     "fixedValue":  3,
+                                                                                                     "ref":  null
+                                                                                                 },
+                                                                                 "candidateTargets":  {
+                                                                                                          "controller":  "OPPONENT",
+                                                                                                          "zones":  [
+                                                                                                                        "BOARD"
+                                                                                                                    ],
+                                                                                                          "entityTypes":  [
+                                                                                                                              "MINION"
+                                                                                                                          ],
+                                                                                                          "requiredTags":  [
+
+                                                                                                                           ],
+                                                                                                          "excludedTags":  [
+
+                                                                                                                           ],
+                                                                                                          "aliveOnly":  true
+                                                                                                      },
+                                                                                 "distributionMode":  "RANDOM_SPLIT",
+                                                                                 "perTargetInstancePolicy":  "SEPARATE_DAMAGE_INSTANCES",
+                                                                                 "lifestealAggregationPolicy":  "NO_LIFESTEAL",
+                                                                                 "overkillPolicy":  "ALLOW_OVERKILL",
+                                                                                 "fizzleIfNoTargets":  true,
+                                                                                 "rngPolicy":  "RANDOM_TARGET",
+                                                                                 "actionId":  "split_cinder_damage"
+                                                                             }
+                                                                         ],
+                                                             "resolutionPolicy":  {
+                                                                                      "kind":  "SOURCE_ORDER"
+                                                                                  },
+                                                             "fizzlePolicy":  {
+                                                                                  "kind":  "FIZZLE_WHOLE_EFFECT"
+                                                                              },
+                                                             "replayPolicy":  {
+                                                                                  "logActionResults":  true,
+                                                                                  "requiresRngLog":  true
+                                                                              },
+                                                             "tags":  [
+
+                                                                      ]
+                                                         }
+                                                     ],
+                                         "cardText":  {
+                                                          "rulesText":  "Randomly split 3 damage among enemy minions.",
+                                                          "flavorText":  null
+                                                      },
+                                         "balanceMetadata":  {
+                                                                 "complexityScore":  1,
+                                                                 "randomnessScore":  2,
+                                                                 "riskFlags":  [
+
+                                                                               ]
+                                                             },
+                                         "assetMetadata":  {
+                                                               "assetManifestId":  "openai-image:sha256:942830a6aab582db04f4be28c06bbeee7b5ff29d6d88db3d64531d8365dcf319",
+                                                               "visualAssetRef":  "CardArt/unity_test_cinderwake_damage_distribution_15",
+                                                               "audioManifestId":  null
+                                                           },
+                                         "authoringMetadata":  {
+                                                                   "createdBy":  "unity-test-card-pack-exporter",
+                                                                   "createdAt":  "2026-08-09T13:04:53.1871052+00:00",
+                                                                   "generationPipelineVersion":  "unity-test-card-pack-pipeline-v1",
+                                                                   "sourceRefs":  [
+                                                                                      "provider:structured:gpt-5.6",
+                                                                                      "prompt:unity-test-card-pack-v1"
+                                                                                  ]
+                                                               }
+                                     },
+                      "published":  true
+                  }
+              ],
+    "compatibleRulesetIds":  [
+                                 "ruleset-production-core-v1"
+                             ],
+    "compatibleRulesetVersions":  [
+                                      "1.0.0"
+                                  ],
+    "productionScaleCompatible":  true
+}

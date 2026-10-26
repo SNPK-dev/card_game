@@ -1,0 +1,32 @@
+{
+  "playtestId": "playtest-20260708080000000-abc12345",
+  "tester": "local-developer",
+  "scenario": "local-match-basic-turn",
+  "startedAt": "2026-07-08T08:00:00Z",
+  "completedAt": "2026-07-08T08:05:00Z",
+  "unityVersion": "6000.3.2f1",
+  "backendUrl": "http://localhost:5000",
+  "buildMode": "Editor",
+  "matchId": "unity-board-20260708080000",
+  "matchIds": ["unity-board-20260708080000"],
+  "modeSwitches": ["PlayerOne:player-1", "PlayerTwo:player-2", "Spectator:spectator-1"],
+  "commandsSubmitted": ["END_TURN"],
+  "choicesResolved": ["choice-1:option-1"],
+  "targetsSelected": ["entity-1"],
+  "targetSelectionsAttempted": ["entity-1:accepted", "entity-x:rejected"],
+  "reconnects": ["succeeded:missed=0"],
+  "reconnectAttempts": ["succeeded:missed=0"],
+  "replayChecks": ["verified"],
+  "replayVerificationResult": "verified",
+  "presentationIntents": ["1:TURN_STARTED:TurnStatus", "2:TURN_ENDED:TurnStatus"],
+  "presentationIntentsSeen": ["1:TURN_STARTED:TurnStatus", "2:TURN_ENDED:TurnStatus"],
+  "hiddenInfoVisualChecks": [
+    "PlayerOne opponent identities absent",
+    "PlayerTwo opponent identities absent",
+    "Spectator hidden identities absent"
+  ],
+  "errors": [],
+  "knownLimitationsObserved": ["placeholder visuals only"],
+  "verdict": "pass-with-limitations",
+  "finalLocalPlaytestVerdict": "pass-with-limitations"
+}

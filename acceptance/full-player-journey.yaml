@@ -1,0 +1,470 @@
+contract_id: full-player-journey-production
+version: 0.1.0
+verdicts:
+  ready: full-player-journey-production-ready
+  failed: full-player-journey-production-failed
+  product_blocked: full-player-journey-production-product-blocked
+rules:
+  normal_player_journey_requires_only_server_and_client_start: true
+  packaged_client_required: true
+  direct_backend_runtime_mutation_for_player_steps_forbidden: true
+  fixture_only_collection_or_decks_forbidden: true
+  bot_only_proof_as_manual_substitute_forbidden: true
+  run_count_required: 2
+  manual_packaged_client_journey_required: true
+stages:
+  - test_id: FPJ-001
+    stage: Server bootstrap
+    actor: developer-admin
+    prerequisites: [release package or production-like server workspace, durable storage configured]
+    ui_actions: [none]
+    api_effects_expected: [health endpoint returns ready, production ruleset available, durable storage path reported]
+    persistence_expected: [storage root exists and is not in-memory]
+    assertions: [server starts from documented launcher, provider requirements are explicit]
+    negative_cases: [missing storage fails visibly, missing required provider fails visibly]
+    artifacts_expected: [server.log, environment.json]
+    screenshots_expected: []
+    logs_expected: [server.log]
+    blocking: true
+  - test_id: FPJ-002
+    stage: Client bootstrap
+    actor: anonymous-player
+    prerequisites: [server ready, packaged client executable exists]
+    ui_actions: [launch packaged client]
+    api_effects_expected: [client checks backend health]
+    persistence_expected: [client settings store initialized safely]
+    assertions: [Bootstrap screen reaches Login or session restore]
+    negative_cases: [server unavailable shows retryable error]
+    artifacts_expected: [client.log, screenshots/bootstrap.png]
+    screenshots_expected: [Bootstrap or Login]
+    logs_expected: [client.log]
+    blocking: true
+  - test_id: FPJ-003
+    stage: Registration
+    actor: anonymous-player
+    prerequisites: [Login/Register screens available]
+    ui_actions: [open Register, enter display name, email, password, confirm password, submit]
+    api_effects_expected: [POST /auth/register creates account and session]
+    persistence_expected: [account and profile survive backend restart]
+    assertions: [password is masked, button disables while loading, success navigates to MainMenu]
+    negative_cases: [invalid email and weak password rejected]
+    artifacts_expected: [registration.json, screenshots/registration.png]
+    screenshots_expected: [Registration]
+    logs_expected: [client.log, server.log]
+    blocking: true
+  - test_id: FPJ-004
+    stage: Duplicate registration rejection
+    actor: anonymous-player
+    prerequisites: [account from FPJ-003 exists]
+    ui_actions: [attempt registration with same email]
+    api_effects_expected: [POST /auth/register rejects duplicate]
+    persistence_expected: [existing account unchanged]
+    assertions: [structured duplicate error shown near email]
+    negative_cases: [token/password not logged]
+    artifacts_expected: [security-negative-report.json]
+    screenshots_expected: [Duplicate registration error]
+    logs_expected: [server.log]
+    blocking: true
+  - test_id: FPJ-005
+    stage: Login
+    actor: anonymous-player
+    prerequisites: [registered account exists]
+    ui_actions: [open Login, enter email and password, submit]
+    api_effects_expected: [POST /auth/login returns valid session]
+    persistence_expected: [session stored within platform constraints]
+    assertions: [successful login navigates to MainMenu]
+    negative_cases: [none]
+    artifacts_expected: [login.json, screenshots/login.png]
+    screenshots_expected: [Login]
+    logs_expected: [client.log]
+    blocking: true
+  - test_id: FPJ-006
+    stage: Invalid login rejection
+    actor: anonymous-player
+    prerequisites: [registered account exists]
+    ui_actions: [submit wrong password]
+    api_effects_expected: [POST /auth/login rejects credentials]
+    persistence_expected: [no new valid session]
+    assertions: [structured invalid credential error appears]
+    negative_cases: [password not logged, account enumeration minimized]
+    artifacts_expected: [security-negative-report.json]
+    screenshots_expected: [Invalid login error]
+    logs_expected: [server.log]
+    blocking: true
+  - test_id: FPJ-007
+    stage: Session persistence
+    actor: authenticated-player
+    prerequisites: [valid login]
+    ui_actions: [navigate away and return, restart client if run mode requires]
+    api_effects_expected: [POST /auth/refresh or equivalent succeeds]
+    persistence_expected: [valid session restored or clean login fallback on expiry]
+    assertions: [expired session returns to Login cleanly]
+    negative_cases: [expired refresh rejected]
+    artifacts_expected: [persistence-report.json]
+    screenshots_expected: [Restored MainMenu or Login fallback]
+    logs_expected: [client.log]
+    blocking: true
+  - test_id: FPJ-008
+    stage: Main menu
+    actor: authenticated-player
+    prerequisites: [valid session]
+    ui_actions: [open main navigation items]
+    api_effects_expected: [GET /me succeeds]
+    persistence_expected: [profile displayed from persisted account]
+    assertions: [Home, Generate Cards, Collection, Decks, Play, Replays, Settings, Profile, Logout are reachable]
+    negative_cases: [debug controls hidden in release]
+    artifacts_expected: [screenshots/main-menu.png]
+    screenshots_expected: [Main menu]
+    logs_expected: [client.log]
+    blocking: true
+  - test_id: FPJ-009
+    stage: Card generation
+    actor: authenticated-player
+    prerequisites: [provider available, generation screen reachable]
+    ui_actions: [enter prompt, choose batch size, click Generate]
+    api_effects_expected: [generation job created through real provider path]
+    persistence_expected: [job persists through screen navigation]
+    assertions: [no fixture fallback, provider/model recorded]
+    negative_cases: [provider unavailable shows structured error]
+    artifacts_expected: [generation-report.json]
+    screenshots_expected: [Generation form]
+    logs_expected: [server.log, provider.log]
+    blocking: true
+  - test_id: FPJ-010
+    stage: Generation progress
+    actor: authenticated-player
+    prerequisites: [generation job running]
+    ui_actions: [wait on generation progress]
+    api_effects_expected: [progress reflects real job status]
+    persistence_expected: [job state survives navigation]
+    assertions: [per-card status updates are visible]
+    negative_cases: [timeout is retryable when appropriate]
+    artifacts_expected: [generation-report.json]
+    screenshots_expected: [Generation progress]
+    logs_expected: [provider.log]
+    blocking: true
+  - test_id: FPJ-011
+    stage: Generation result review
+    actor: authenticated-player
+    prerequisites: [generation job completed]
+    ui_actions: [review generated cards, accept published cards into collection]
+    api_effects_expected: [published valid cards acquired by player]
+    persistence_expected: [collection entries written]
+    assertions: [rejected cards are not acquired]
+    negative_cases: [publication failure blocks acquisition]
+    artifacts_expected: [generation-report.json, collection-report.json]
+    screenshots_expected: [Generated cards]
+    logs_expected: [server.log]
+    blocking: true
+  - test_id: FPJ-012
+    stage: Collection persistence
+    actor: authenticated-player
+    prerequisites: [cards acquired]
+    ui_actions: [open Collection]
+    api_effects_expected: [collection list returns owned cards]
+    persistence_expected: [collection survives logout/client restart/backend restart]
+    assertions: [owned card quantities visible]
+    negative_cases: [anonymous collection request rejected]
+    artifacts_expected: [collection-report.json]
+    screenshots_expected: [Collection]
+    logs_expected: [server.log]
+    blocking: true
+  - test_id: FPJ-013
+    stage: Collection filters/search
+    actor: authenticated-player
+    prerequisites: [collection has multiple cards]
+    ui_actions: [search, filter by type/cost/generated batch, sort, favorite]
+    api_effects_expected: [query respects authenticated player ownership]
+    persistence_expected: [favorite flag persists]
+    assertions: [filters do not show unowned cards]
+    negative_cases: [other player's collection rejected]
+    artifacts_expected: [collection-report.json]
+    screenshots_expected: [Filtered collection]
+    logs_expected: [client.log]
+    blocking: true
+  - test_id: FPJ-014
+    stage: Deck creation
+    actor: authenticated-player
+    prerequisites: [collection has enough cards]
+    ui_actions: [open Decks, create deck, name deck, select production ruleset]
+    api_effects_expected: [draft deck initialized or local draft created]
+    persistence_expected: [no saved invalid deck unless explicitly draft-supported]
+    assertions: [deck count starts at 0/30]
+    negative_cases: [empty name validation shown]
+    artifacts_expected: [deck-report.json]
+    screenshots_expected: [Deck builder empty]
+    logs_expected: [client.log]
+    blocking: true
+  - test_id: FPJ-015
+    stage: Deck legality feedback
+    actor: authenticated-player
+    prerequisites: [deck builder open]
+    ui_actions: [add too few cards, exceed copy limit, attempt unavailable card]
+    api_effects_expected: [backend validation returns structured diagnostics]
+    persistence_expected: [invalid saved state rejected or flagged]
+    assertions: [Too few, copy limit, unavailable, incompatible, unpublished states are visible]
+    negative_cases: [unknown card rejected]
+    artifacts_expected: [deck-report.json]
+    screenshots_expected: [Deck validation errors]
+    logs_expected: [server.log]
+    blocking: true
+  - test_id: FPJ-016
+    stage: Deck save
+    actor: authenticated-player
+    prerequisites: [legal 30-card deck built]
+    ui_actions: [drag cards into deck, save]
+    api_effects_expected: [authenticated deck save succeeds]
+    persistence_expected: [deck persists in durable store]
+    assertions: [30/30 valid, max 2 copies, backend validation accepted]
+    negative_cases: [another user's card version rejected]
+    artifacts_expected: [deck-report.json]
+    screenshots_expected: [Deck builder with 30/30 valid deck]
+    logs_expected: [server.log]
+    blocking: true
+  - test_id: FPJ-017
+    stage: Deck selection
+    actor: authenticated-player
+    prerequisites: [saved legal deck exists]
+    ui_actions: [select active deck]
+    api_effects_expected: [active deck selection persisted]
+    persistence_expected: [active deck survives client restart]
+    assertions: [Play screen uses selected deck]
+    negative_cases: [selecting invalid/deleted deck rejected]
+    artifacts_expected: [deck-report.json]
+    screenshots_expected: [Deck selected]
+    logs_expected: [client.log]
+    blocking: true
+  - test_id: FPJ-018
+    stage: Match creation
+    actor: authenticated-player
+    prerequisites: [active valid deck selected]
+    ui_actions: [open Play, choose Play vs Bot, click Start]
+    api_effects_expected: [real match created, bot uses legal actions]
+    persistence_expected: [match runtime persisted]
+    assertions: [local bot is clearly labeled, not ranked matchmaking]
+    negative_cases: [invalid deck blocks start]
+    artifacts_expected: [match-report.json]
+    screenshots_expected: [Play screen]
+    logs_expected: [server.log]
+    blocking: true
+  - test_id: FPJ-019
+    stage: Match loading
+    actor: authenticated-player
+    prerequisites: [match created]
+    ui_actions: [wait for Gameplay]
+    api_effects_expected: [state and legal actions fetched]
+    persistence_expected: [match state recoverable]
+    assertions: [starting hand and board render from server state]
+    negative_cases: [connection error is retryable]
+    artifacts_expected: [match-report.json]
+    screenshots_expected: [Starting hand]
+    logs_expected: [client.log]
+    blocking: true
+  - test_id: FPJ-020
+    stage: Hand interaction
+    actor: authenticated-player
+    prerequisites: [player has hand cards]
+    ui_actions: [inspect cards, select playable and unplayable cards]
+    api_effects_expected: [legal action candidates drive highlights]
+    persistence_expected: [no state mutation from inspection]
+    assertions: [playable glow and invalid feedback visible]
+    negative_cases: [hidden opponent hand info not revealed]
+    artifacts_expected: [ui-action-log.jsonl]
+    screenshots_expected: [Hand interaction]
+    logs_expected: [client.log]
+    blocking: true
+  - test_id: FPJ-021
+    stage: Drag/play card
+    actor: authenticated-player
+    prerequisites: [playable card in hand]
+    ui_actions: [drag card to valid play area and release]
+    api_effects_expected: [command submitted through UI handler and accepted]
+    persistence_expected: [command log updated]
+    assertions: [card drag proof captured, command pending/accepted visible]
+    negative_cases: [invalid drop rejected visibly]
+    artifacts_expected: [ui-action-log.jsonl, match-report.json]
+    screenshots_expected: [Card drag]
+    logs_expected: [client.log, server.log]
+    blocking: true
+  - test_id: FPJ-022
+    stage: Target selection
+    actor: authenticated-player
+    prerequisites: [legal action requires target]
+    ui_actions: [select source, select valid target, cancel once if available]
+    api_effects_expected: [server-provided target candidates used]
+    persistence_expected: [only accepted command mutates state]
+    assertions: [valid targets highlighted, invalid targets blocked]
+    negative_cases: [locally invented target rejected]
+    artifacts_expected: [event-report.json]
+    screenshots_expected: [Target selection]
+    logs_expected: [client.log]
+    blocking: true
+  - test_id: FPJ-023
+    stage: Choice resolution
+    actor: authenticated-player
+    prerequisites: [choice required]
+    ui_actions: [open choice modal, select option, confirm]
+    api_effects_expected: [RESOLVE_CHOICE submitted with server choice id/option ids]
+    persistence_expected: [choice resolution recorded in command log]
+    assertions: [choice modal visible and resolves]
+    negative_cases: [invalid option rejected]
+    artifacts_expected: [event-report.json]
+    screenshots_expected: [Choice modal]
+    logs_expected: [server.log]
+    blocking: true
+  - test_id: FPJ-024
+    stage: Effect presentation
+    actor: authenticated-player
+    prerequisites: [public gameplay events occur]
+    ui_actions: [observe animations and audio]
+    api_effects_expected: [events fetched and deduped]
+    persistence_expected: [presentation does not alter gameplay state hash]
+    assertions: [damage/effect animation and audio/fallback evidence captured]
+    negative_cases: [unknown event uses fallback]
+    artifacts_expected: [presentation-report.json]
+    screenshots_expected: [Damage/effect presentation]
+    logs_expected: [client.log]
+    blocking: true
+  - test_id: FPJ-025
+    stage: Turn progression
+    actor: authenticated-player
+    prerequisites: [match active]
+    ui_actions: [end turn, wait for bot, continue next turn]
+    api_effects_expected: [turn commands and bot legal actions processed]
+    persistence_expected: [turn state recoverable]
+    assertions: [opponent turn/your turn state visible]
+    negative_cases: [end turn out of phase rejected]
+    artifacts_expected: [match-report.json]
+    screenshots_expected: [Turn indicator]
+    logs_expected: [server.log]
+    blocking: true
+  - test_id: FPJ-026
+    stage: Reconnect
+    actor: authenticated-player
+    prerequisites: [match active]
+    ui_actions: [trigger reconnect scenario]
+    api_effects_expected: [reconnect returns authoritative state and missed events]
+    persistence_expected: [match continues after reconnect]
+    assertions: [commands disabled while reconnecting, state refreshes]
+    negative_cases: [expired token cannot reconnect]
+    artifacts_expected: [reconnect-report.json]
+    screenshots_expected: [Reconnect state]
+    logs_expected: [client.log, server.log]
+    blocking: true
+  - test_id: FPJ-027
+    stage: Terminal result
+    actor: authenticated-player
+    prerequisites: [match near completion or complete]
+    ui_actions: [play until terminal result]
+    api_effects_expected: [GAME_ENDED or terminal fault/result received]
+    persistence_expected: [final command log and state hash persisted]
+    assertions: [terminal result reached without forced winner or fake termination]
+    negative_cases: [forced match termination forbidden]
+    artifacts_expected: [match-report.json]
+    screenshots_expected: [Terminal result]
+    logs_expected: [server.log]
+    blocking: true
+  - test_id: FPJ-028
+    stage: Results screen
+    actor: authenticated-player
+    prerequisites: [terminal match]
+    ui_actions: [view Results]
+    api_effects_expected: [results summary loaded]
+    persistence_expected: [recent replay/result ref stored]
+    assertions: [victory/defeat/draw, reason, turns, commands, duration, deck, opponent, hash, replay status visible]
+    negative_cases: [missing replay verification reported]
+    artifacts_expected: [results-report.json]
+    screenshots_expected: [Terminal results]
+    logs_expected: [client.log]
+    blocking: true
+  - test_id: FPJ-029
+    stage: Replay
+    actor: authenticated-player
+    prerequisites: [completed match result exists]
+    ui_actions: [open replay, play/pause, step, restart, change speed, exit]
+    api_effects_expected: [production replay verification succeeds]
+    persistence_expected: [replay ref survives restart]
+    assertions: [verified status and final hash visible]
+    negative_cases: [tampered replay mismatch rejected]
+    artifacts_expected: [replay-report.json]
+    screenshots_expected: [Replay]
+    logs_expected: [server.log]
+    blocking: true
+  - test_id: FPJ-030
+    stage: Logout
+    actor: authenticated-player
+    prerequisites: [logged in]
+    ui_actions: [open Profile or Settings, click Logout, confirm]
+    api_effects_expected: [POST /auth/logout invalidates session]
+    persistence_expected: [local sensitive session state cleared]
+    assertions: [returns to Login]
+    negative_cases: [logged-out token rejected]
+    artifacts_expected: [security-negative-report.json]
+    screenshots_expected: [Logout/Login]
+    logs_expected: [client.log]
+    blocking: true
+  - test_id: FPJ-031
+    stage: Client restart
+    actor: authenticated-player
+    prerequisites: [collection/deck/settings/replay exist]
+    ui_actions: [stop client, start client]
+    api_effects_expected: [health/session/profile checks occur]
+    persistence_expected: [local settings and valid auth session or clean login fallback]
+    assertions: [restart does not lose settings]
+    negative_cases: [corrupt settings fall back safely]
+    artifacts_expected: [persistence-report.json]
+    screenshots_expected: [Restarted client]
+    logs_expected: [client.log]
+    blocking: true
+  - test_id: FPJ-032
+    stage: Login after restart
+    actor: authenticated-player
+    prerequisites: [client restarted]
+    ui_actions: [log in if session not restored]
+    api_effects_expected: [POST /auth/login or refresh succeeds]
+    persistence_expected: [profile restored]
+    assertions: [MainMenu reachable]
+    negative_cases: [expired session cleanly returns to Login]
+    artifacts_expected: [login.json, persistence-report.json]
+    screenshots_expected: [Main menu after restart]
+    logs_expected: [client.log]
+    blocking: true
+  - test_id: FPJ-033
+    stage: Collection/deck persistence
+    actor: authenticated-player
+    prerequisites: [restart login complete]
+    ui_actions: [open Collection, open Decks]
+    api_effects_expected: [collection and deck APIs return persisted data]
+    persistence_expected: [collection, generated cards, saved deck, active deck remain]
+    assertions: [post-restart collection/deck matches prior reports]
+    negative_cases: [other-user ownership checks still enforced]
+    artifacts_expected: [persistence-report.json]
+    screenshots_expected: [Post-restart collection/deck]
+    logs_expected: [server.log]
+    blocking: true
+  - test_id: FPJ-034
+    stage: Skin selection persistence
+    actor: authenticated-player
+    prerequisites: [settings screen available, at least two skins registered]
+    ui_actions: [open Settings, select alternate skin, adjust audio, restart client]
+    api_effects_expected: [settings saved where applicable]
+    persistence_expected: [skin/audio/reduced-motion settings survive restart]
+    assertions: [skin is presentation-only and does not change gameplay hash]
+    negative_cases: [missing skin asset falls back safely]
+    artifacts_expected: [presentation-report.json, persistence-report.json]
+    screenshots_expected: [Settings/skin]
+    logs_expected: [client.log]
+    blocking: true
+  - test_id: FPJ-035
+    stage: Final acceptance
+    actor: developer-admin
+    prerequisites: [FPJ-001 through FPJ-034 complete for run 1 and run 2, manual journey complete]
+    ui_actions: [none]
+    api_effects_expected: [all observed API effects match contract]
+    persistence_expected: [client and backend restart proof complete]
+    assertions: [two automated packaged-client runs pass, one manual packaged-client journey passes, security negatives pass, release package starts from docs]
+    negative_cases: [any missing required subsystem prevents ready verdict]
+    artifacts_expected: [final-verdict.json, final-human-report.md]
+    screenshots_expected: [all required screenshots present]
+    logs_expected: [server.log, client.log, provider.log]
+    blocking: true

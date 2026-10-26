@@ -1,0 +1,27 @@
+services:
+  game-api:
+    build:
+      context: .
+      dockerfile: src/Game.Api/Dockerfile
+    image: new-card-game-api:local
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:8080
+      Storage__RootPath: /var/lib/card-game
+      Api__MaxRequestBodyBytes: "1048576"
+      Api__WriteRateLimit__PermitLimit: "60"
+      Api__WriteRateLimit__WindowSeconds: "60"
+    ports:
+      - "5000:8080"
+    volumes:
+      - game-api-storage:/var/lib/card-game
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail --silent http://127.0.0.1:8080/health > /dev/null"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+    restart: unless-stopped
+
+volumes:
+  game-api-storage:

@@ -1,0 +1,16 @@
+{
+  "sessionToken": "unity-local-session-p1",
+  "command": {
+    "commandType": "PLAY_CARD",
+    "playerId": "player-1",
+    "payload": { "cost": 1, "attack": 1, "health": 1 },
+    "refs": {
+      "cardInstanceId": "player-1:card_public_minion:001",
+      "entityInstanceId": "entity:player-1:card_public_minion:001",
+      "heroPowerActivationTiming": ""
+    }
+  },
+  "commandId": "unity-command-0001",
+  "expectedPreStateHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "correlationId": "unity-ui-action-0001"
+}

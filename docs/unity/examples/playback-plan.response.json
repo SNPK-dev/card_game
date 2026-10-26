@@ -1,0 +1,34 @@
+{
+  "playbackPlan": {
+    "playbackPlanId": "playback-unity-local-match",
+    "timelineId": "timeline-unity-local-match",
+    "presentationTimelineHash": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "presentationCatalogHash": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "firstSourceEventSeq": 1,
+    "lastSourceEventSeq": 1,
+    "steps": [
+      {
+        "stepId": "playback:presentation:1:asset-card-public-minion-v1:onPlay",
+        "stepKind": "PlayAsset",
+        "timelineEntryId": "presentation:1:asset-card-public-minion-v1:onPlay",
+        "sourceEventSeq": 1,
+        "cueType": "OnPlay",
+        "sourceCardId": "card_public_minion",
+        "sourceCardVersionId": "card_public_minion_v1",
+        "assetManifestId": "asset-card-public-minion-v1",
+        "assetRef": "assets/audio/card_public_minion_on_play.wav",
+        "playbackPolicy": {
+          "playOnce": true,
+          "interruptPolicy": "NONE",
+          "overlapPolicy": "SKIP_IF_BUSY",
+          "priority": 10,
+          "maxConcurrentInstances": 1,
+          "clientMaySkip": true
+        },
+        "fallbackPolicy": { "allowSilence": true, "fallbackAssetRefs": [] },
+        "visibilityPolicy": "Public",
+        "reason": "CARD_PLAYED"
+      }
+    ]
+  }
+}

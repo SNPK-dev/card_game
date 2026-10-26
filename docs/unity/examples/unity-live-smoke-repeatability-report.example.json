@@ -1,0 +1,18 @@
+{
+  "smokeRunId": "unity-smoke-run-20260708090000000-abc12345",
+  "backendUrl": "http://localhost:5000",
+  "seedMode": "Ensure",
+  "firstRun": {
+    "matchId": "unity-live-smoke-20260708090000000-abc12345",
+    "seedStatus": "ruleset-profile:Created, catalog-snapshot:Created, deck:Created, deck:Created",
+    "replayVerified": true
+  },
+  "secondRun": {
+    "matchId": "unity-live-smoke-20260708090001000-def67890",
+    "seedStatus": "ruleset-profile:AlreadyCompatible, catalog-snapshot:AlreadyCompatible, deck:AlreadyCompatible, deck:AlreadyCompatible",
+    "distinctMatchId": true,
+    "reconnectSucceeded": true,
+    "replayVerified": true
+  },
+  "finalVerdict": "repeatability-pass"
+}

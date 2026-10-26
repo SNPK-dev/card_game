@@ -1,0 +1,17 @@
+{
+  "eventSeq": 3,
+  "parentEventSeq": null,
+  "commandSeq": 2,
+  "eventType": "CHOICE_CREATED",
+  "category": "COMMITTED",
+  "phase": "ON_PLAY",
+  "sourceRefs": [{ "refType": "CARD", "refId": "card_discover_v1", "zone": "GRAVEYARD", "controllerPlayerId": "player-1" }],
+  "targetRefs": [{ "refType": "PLAYER", "refId": "player-1", "zone": null, "controllerPlayerId": "player-1" }],
+  "payload": [{ "key": "choiceId", "value": { "valueKind": "STRING", "stringValue": "choice-001", "intValue": null, "boolValue": null, "stringValues": [] } }],
+  "mutationBatchRef": "batch:0003",
+  "mutationRefs": ["mutation:0003"],
+  "rngRollRefs": [],
+  "preStateHash": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+  "postStateHash": "sha256:4444444444444444444444444444444444444444444444444444444444444444",
+  "visibility": "OWNER_ONLY"
+}

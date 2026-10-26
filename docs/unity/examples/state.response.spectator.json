@@ -1,0 +1,41 @@
+{
+  "matchId": "unity-local-match",
+  "viewKind": "SPECTATOR",
+  "viewerPlayerId": null,
+  "revision": 1,
+  "stateHash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "activePlayerId": "player-1",
+  "turnNumber": 1,
+  "phase": "TURN_START",
+  "isTerminal": false,
+  "terminalReason": "",
+  "players": {
+    "player-1": {
+      "playerId": "player-1",
+      "relationship": "SPECTATED",
+      "zones": {
+        "deck": { "zone": "DECK", "count": 2, "cards": [] },
+        "hand": { "zone": "HAND", "count": 1, "cards": [] },
+        "graveyard": { "zone": "GRAVEYARD", "count": 0, "cards": [] },
+        "secretZone": { "zone": "SECRET_ZONE", "count": 0, "cards": [] },
+        "setAside": { "zone": "SET_ASIDE", "count": 0, "cards": [] },
+        "board": []
+      },
+      "hero": null,
+      "mana": 10,
+      "maxMana": 10,
+      "armor": 0,
+      "fatigueCounter": 0,
+      "modifiers": [],
+      "weapon": null,
+      "location": null,
+      "heroPower": null,
+      "quests": [],
+      "secrets": [],
+      "auras": []
+    }
+  },
+  "pendingChoices": {},
+  "nextEventSeq": 1,
+  "commandCount": 0
+}

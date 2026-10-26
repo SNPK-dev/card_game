@@ -1,0 +1,43 @@
+{
+  "validationId": "unity-rc-20260708T090000Z",
+  "status": "passed",
+  "startedAt": "20260708T090000Z",
+  "artifactRoot": "artifacts/unity-rc-validation/20260708T090000Z",
+  "backendSmokes": "passed",
+  "dtoDrift": "passed",
+  "openApi": "passed",
+  "fullLiveSmoke": "passed",
+  "repeatability": "passed",
+  "devBuildSmoke": "passed",
+  "standaloneBuild": "passed",
+  "webglBuild": "passed",
+  "mediaInventory": "passed",
+  "qualityGates": "passed",
+  "mcpInspection": "see docs/unity/mcp-inspection-latest.md",
+  "authorityHiddenInfo": "see docs/unity/client-authority-and-hidden-info-final-gate.md",
+  "docs": "passed",
+  "finalVerdict": "unity-client-release-candidate-ready-with-known-limitations",
+  "steps": [
+    {
+      "name": "check-unity-editor-env",
+      "status": "passed",
+      "exitCode": 0,
+      "logPath": "artifacts/unity-rc-validation/20260708T090000Z/check-unity-editor-env.log",
+      "reason": ""
+    },
+    {
+      "name": "unity-dev-build-webgl",
+      "status": "passed",
+      "exitCode": 0,
+      "logPath": "artifacts/unity-rc-validation/20260708T090000Z/unity-dev-build-webgl.log",
+      "reason": ""
+    },
+    {
+      "name": "unity-playmode-live-smoke",
+      "status": "passed",
+      "exitCode": 0,
+      "logPath": "artifacts/unity-rc-validation/20260708T090000Z/unity-playmode-live-smoke.log",
+      "reason": ""
+    }
+  ]
+}

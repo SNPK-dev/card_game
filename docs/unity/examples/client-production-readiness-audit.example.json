@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "unity-client-production-readiness-audit.v1",
+  "generatedAt": "2026-07-08T12:00:00Z",
+  "claim": "release-candidate-ready-with-known-limitations",
+  "categories": [
+    {
+      "name": "Backend/API integration",
+      "status": "ready",
+      "evidencePath": "docs/api/openapi.yaml",
+      "latestValidationCommand": "bash scripts/unity/validate-openapi.sh",
+      "remainingRisk": "Local backend deployment is separate.",
+      "ownerFollowUp": "Backend/API"
+    },
+    {
+      "name": "MCP inspection",
+      "status": "ready-with-limitations",
+      "evidencePath": "docs/unity/mcp-inspection-latest.md",
+      "latestValidationCommand": "bash scripts/unity/check-unity-mcp-endpoint.sh plus MCP tools",
+      "remainingRisk": "Active editor attachment is environment-controlled.",
+      "ownerFollowUp": "Unity client"
+    }
+  ]
+}
